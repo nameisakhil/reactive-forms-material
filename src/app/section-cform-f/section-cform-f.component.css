@@ -1,0 +1,33 @@
+.width-100 {
+  width: 80vw;
+  display: block;
+}
+
+h2 {
+  width: 80vw;
+  margin-top: 50px;
+}
+
+.flex-space-between {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.width-50 {
+  display: inline-block;
+  width: 40vw;
+}
+
+.width-30 {
+  width: 20vw;
+}
+
+.sub-group-block {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+}
