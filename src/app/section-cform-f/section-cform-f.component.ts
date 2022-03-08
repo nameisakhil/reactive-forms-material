@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 export interface Diagnosis{
   name: string,
@@ -16,22 +16,9 @@ export interface Diagnosis{
 export class SectionCFormFComponent implements OnInit {
 
   sectionC:FormGroup
-  diagnosis: Diagnosis={
-    name: 'previousChildOrChildrenWith',
-    completed: false,
-    diagnosisArray: [
-      {name:'chromosomalDisorders',completed:false},
-      {name:'metabolicDisorders',completed:false},
-      {name:'congenitalAnomaly',completed:false},
-      {name:'mentalDisability',completed:false},
-      {name:'Haemoglobinopathy',completed:false},
-      {name:'sexLinkedDisorders',completed:false},
-      {name:'singleGeneDisorder',completed:false},
-      {name:'previousChildOrChildrenWithOthers',completed:false},
-    ]
-  }
 
-  allCompleted: boolean = false
+
+  allComplete: boolean = false
   constructor() { }
 
   ngOnInit(): void {
@@ -39,29 +26,25 @@ export class SectionCFormFComponent implements OnInit {
       'doctorName': new FormControl(null),
       'geneticHistory':new FormControl(null),
       'diagnosisProcedureIndications': new FormGroup({
-        'previousChildOrChildrenWith': new FormGroup({
-          'chromosomalDisorders': new FormControl(null),
-          'metabolicDisorders': new FormControl(null),
-          'congenitalAnomaly': new FormControl(null),
-          'mentalDisability': new FormControl(null),
-          'Haemoglobinopathy': new FormControl(null),
-          'sexLinkedDisorders': new FormControl(null),
-          'singleGeneDisorder': new FormControl(null),
-          'previousChildOrChildrenWithOthers':new FormGroup({
-            'previousChildOrChildrenWithOthersDetail': new FormControl(null)
-          })
-        }),
 
+        'chromosomalDisorders': new FormControl(null),
+        'metabolicDisorders': new FormControl(null),
+        'congenitalAnomaly': new FormControl(null),
+        'mentalDisability': new FormControl(null),
+        'Haemoglobinopathy': new FormControl(null),
+        'sexLinkedDisorders': new FormControl(null),
+        'singleGeneDisorder': new FormControl(null),
+        'previousChildOrChildrenWithOthersDetail': new FormControl(null),
         'advancedMaternalAge': new FormControl(null),
-        'geneticDisease': new FormGroup({
-          'mother': new FormControl(null),
-          'father': new FormControl(null),
-          'sibling': new FormControl(null)
-        }),
+
+        'mother': new FormControl(null),
+        'father': new FormControl(null),
+        'sibling': new FormControl(null),
+
         'preImplantationGenderDiagnosis': new FormControl(null),
-        'diagnosisProcedureIndicationsOthers': new FormGroup({
-          'diagnosisProcedureIndicationsOthersDetail': new FormControl(null)
-        })
+
+        'diagnosisProcedureIndicationsOthersDetail': new FormControl(null)
+
 
       }),
       'pregnantWomanConsentDate': new FormControl(null),
@@ -70,9 +53,9 @@ export class SectionCFormFComponent implements OnInit {
         'chorionicVilliAspiration': new FormControl(null),
         'fetalBiopsy': new FormControl(null),
         'Cordocentesis': new FormControl(null),
-        'invasiveProceduresOthers': new FormGroup({
-          'invasiveProceduresOthersDetail': new FormControl(null)
-        }),
+
+        'invasiveProceduresOthersDetail': new FormControl(null)
+
       }),
       'invasiveProcedureComplications': new FormControl(null),
       'recommendedAditionalTests': new FormGroup({
@@ -80,9 +63,9 @@ export class SectionCFormFComponent implements OnInit {
         'biochemicalStudies':new FormControl(null),
         'molecularStudies':new FormControl(null),
         'preImplantationGenderDiagnosis': new FormControl(null),
-        'recommendedAditionalTestsOthers': new FormGroup({
-          'recommendedAditionalTestsOthersDetail': new FormControl(null)
-        })
+
+        'recommendedAditionalTestsOthersDetail': new FormControl(null)
+
 
       })
 
@@ -95,6 +78,7 @@ export class SectionCFormFComponent implements OnInit {
     if (this.sectionC.valid){
       confirm("Submitted Successfully!");
       console.log(this.sectionC.value);
+
     }
     else{
      confirm("Please enter the required fields!");
@@ -102,14 +86,11 @@ export class SectionCFormFComponent implements OnInit {
     }
   }
 
-  someDisorder():boolean{
-    if (this.diagnosis.diagnosisArray == null){
-      return false
-    }
-    return this.diagnosis.diagnosisArray.filter(t => t.completed).length >0 && !this.allCompleted
-  }
+
 
   onClickReset(){
     this.sectionC.reset();
   }
+
+
 }

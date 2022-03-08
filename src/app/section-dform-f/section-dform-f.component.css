@@ -1,8 +1,17 @@
-.signature-container {
+.signature-box {
   border-style: dashed;
   border-width: 1px;
   margin-bottom: 20px;
   background-color: #fdf8f6;
+  padding: 30px;
+  text-align: end;
+  width: 30vw;
+  padding-top: 70px;
+}
+.signature-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 button {

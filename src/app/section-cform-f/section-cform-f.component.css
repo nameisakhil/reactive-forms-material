@@ -38,3 +38,11 @@ button {
   margin-bottom: 8px;
   font-family: "Times New Roman", Times, serif;
 }
+
+.margin-left {
+  margin-left: 2vw;
+}
+
+ul {
+  list-style-type: none;
+}
