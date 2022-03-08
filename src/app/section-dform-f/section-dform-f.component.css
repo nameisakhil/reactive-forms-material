@@ -1,0 +1,13 @@
+.signature-container {
+  border-style: dashed;
+  border-width: 1px;
+  margin-bottom: 20px;
+  background-color: #fdf8f6;
+}
+
+button {
+  margin-right: 20px;
+  box-shadow: 0px 0px 4px 4px #dbdbdb;
+  margin-bottom: 8px;
+  font-family: "Times New Roman", Times, serif;
+}

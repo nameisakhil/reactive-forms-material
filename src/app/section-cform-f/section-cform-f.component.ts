@@ -1,6 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
+export interface Diagnosis{
+  name: string,
+  completed: boolean,
+  diagnosisArray ?:Diagnosis[]
+
+}
+
 @Component({
   selector: 'app-section-cform-f',
   templateUrl: './section-cform-f.component.html',
@@ -8,7 +15,23 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class SectionCFormFComponent implements OnInit {
 
-  sectionC:FormGroup;
+  sectionC:FormGroup
+  diagnosis: Diagnosis={
+    name: 'previousChildOrChildrenWith',
+    completed: false,
+    diagnosisArray: [
+      {name:'chromosomalDisorders',completed:false},
+      {name:'metabolicDisorders',completed:false},
+      {name:'congenitalAnomaly',completed:false},
+      {name:'mentalDisability',completed:false},
+      {name:'Haemoglobinopathy',completed:false},
+      {name:'sexLinkedDisorders',completed:false},
+      {name:'singleGeneDisorder',completed:false},
+      {name:'previousChildOrChildrenWithOthers',completed:false},
+    ]
+  }
+
+  allCompleted: boolean = false
   constructor() { }
 
   ngOnInit(): void {
@@ -16,7 +39,7 @@ export class SectionCFormFComponent implements OnInit {
       'doctorName': new FormControl(null),
       'geneticHistory':new FormControl(null),
       'diagnosisProcedureIndications': new FormGroup({
-        'previousChild/ChildrenWith': new FormGroup({
+        'previousChildOrChildrenWith': new FormGroup({
           'chromosomalDisorders': new FormControl(null),
           'metabolicDisorders': new FormControl(null),
           'congenitalAnomaly': new FormControl(null),
@@ -24,8 +47,8 @@ export class SectionCFormFComponent implements OnInit {
           'Haemoglobinopathy': new FormControl(null),
           'sexLinkedDisorders': new FormControl(null),
           'singleGeneDisorder': new FormControl(null),
-          'previousChild/ChildrenWithOthers':new FormGroup({
-            'previousChild/ChildrenWithOthersDetail': new FormControl(null)
+          'previousChildOrChildrenWithOthers':new FormGroup({
+            'previousChildOrChildrenWithOthersDetail': new FormControl(null)
           })
         }),
 
@@ -64,6 +87,8 @@ export class SectionCFormFComponent implements OnInit {
       })
 
     })
+
+
   }
 
   onSubmit(){
@@ -77,4 +102,14 @@ export class SectionCFormFComponent implements OnInit {
     }
   }
 
+  someDisorder():boolean{
+    if (this.diagnosis.diagnosisArray == null){
+      return false
+    }
+    return this.diagnosis.diagnosisArray.filter(t => t.completed).length >0 && !this.allCompleted
+  }
+
+  onClickReset(){
+    this.sectionC.reset();
+  }
 }

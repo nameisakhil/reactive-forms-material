@@ -11,12 +11,16 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { SectionCFormFComponent } from './section-cform-f/section-cform-f.component'
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
+import { SectionDformFComponent } from './section-dform-f/section-dform-f.component';
+import {MatSelectModule} from '@angular/material/select';
+import { SignaturePadModule } from 'angular2-signaturepad';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    SectionCFormFComponent
+    SectionCFormFComponent,
+    SectionDformFComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +32,9 @@ import {MatNativeDateModule} from '@angular/material/core';
     MatInputModule,
     MatRadioModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatSelectModule,
+    SignaturePadModule
   ],
   providers: [],
   bootstrap: [AppComponent]

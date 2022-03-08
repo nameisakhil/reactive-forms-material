@@ -1,0 +1,145 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-sm-offset-1 col-md-offset-2">
+      <h4>SECTION D: Declaration
+        <br>
+        DECLARATION OF THE PERSON UNDERGOING PRE-NATAL DIAGNOSTIC TEST/PROCEDURE KA
+        JINGMYNJURJONG KA BRIEW KA BAN LEH IA KA TEST SHWA BAN KHA IA I KHUNLUNG</h4>
+        <form class="example-form" [formGroup]="sectionD" (ngSubmit)="onSubmit()">
+
+          I, Mrs. / Mr.
+
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Name</mat-label>
+            <input matInput required placeholder="Ex. Akhil"  formControlName="name">
+          </mat-form-field>
+          declare that by undergoing
+          <mat-form-field class="example-full-width" appearance="fill">
+            <input matInput required placeholder="" formControlName="diagnosis">
+          </mat-form-field>
+          Pre-Natal diagnostic test/procedure. I do not want to know the sex of my foetus.
+          <br>
+
+          Nga, Ka/U
+            <mat-form-field class="example-full-width" appearance="fill">
+              <input matInput placeholder="" formControlName="nameField">
+            </mat-form-field> nga mynjur ba da ka jingleh ia kane ka
+          test shwa ban kha khunlung, ngam ban tip ia ka jinglong shynrang ne kynthei I khunlung ha kpoh.
+          <br>
+          Date:-
+          <mat-form-field appearance="fill">
+            <mat-label>Choose a date</mat-label>
+            <input matInput required [matDatepicker]="picker" formControlName="date1">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+
+          <br>
+          <hr>
+          Identified by (name)
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Name</mat-label>
+              <input matInput required placeholder="Ex. Akhil" formControlName="nameField3">
+            </mat-form-field>
+          age
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Age</mat-label>
+            <input type="number" required matInput placeholder="Ex. 24" formControlName="age">
+          </mat-form-field>
+          sex
+          <mat-form-field appearance="fill">
+            <mat-label>Gender</mat-label>
+            <mat-select formControlName="gender" required>
+              <mat-option *ngFor = "let gender of genders" [value]="gender.value">
+                {{gender.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          Lah pynshisha da (Kyrteng)
+          <mat-form-field class="example-full-width" appearance="fill">
+            <input matInput placeholder="" formControlName="unknownField1">
+          </mat-form-field>
+          snem
+          <mat-form-field class="example-full-width" appearance="fill">
+            <input matInput placeholder="" formControlName="unknownField2">
+          </mat-form-field>
+          (kynthei/shynrang)
+          <mat-form-field class="example-full-width" appearance="fill">
+            <input matInput placeholder="" formControlName="unknownField3">
+          </mat-form-field>
+          <br>
+          <hr>
+          Relation (if any)
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Relationship</mat-label>
+            <input matInput required placeholder="Ex. Father" formControlName="relationship">
+          </mat-form-field>
+          address and contact no
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Contact Number</mat-label>
+            <input type="number" matInput required placeholder="Ex. 9898979796" formControlName="contactNumber">
+          </mat-form-field>
+          jingiadei bad ka nongpun khun
+          <mat-form-field class="example-full-width" appearance="fill">
+            <input matInput  placeholder="" formControlName="unknownField4">
+          </mat-form-field>
+          jaka sah bad phone number
+          <mat-form-field class="example-full-width" appearance="fill">
+            <input type="number" matInput placeholder="Ex. 9898979796" formControlName="contactNumber2">
+          </mat-form-field>
+          <br>
+          Signature of the person attesting thumb impression
+          <div class="signature-container">
+            <signature-pad [options]="signaturePadOptions" (onBeginEvent)="drawStart()" (onEndEvent)="drawComplete()" ></signature-pad>
+            <button (click)="clearSignature()" type="button" class="btn btn-dark button">Clear signature pad</button>
+            <button (click)="savePad()" type="button" class="btn btn-dark button">Save signature</button>
+          </div>
+          date
+          <mat-form-field appearance="fill">
+            <mat-label>Choose a date</mat-label>
+            <input matInput [matDatepicker]="picker2" formControlName="date2">
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+          </mat-form-field>
+            jingsoiu nongsakhi ia kane ka jing shonti
+          <mat-form-field class="example-full-width" appearance="fill">
+            <input matInput placeholder="" formControlName="unknownField5">
+          </mat-form-field>
+           tarik
+          <mat-form-field appearance="fill">
+            <mat-label>Choose a date</mat-label>
+            <input matInput [matDatepicker]="picker3" formControlName="date3">
+            <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+            <mat-datepicker #picker3></mat-datepicker>
+          </mat-form-field>
+            <br>
+            <hr>
+            I,
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Name</mat-label>
+              <input matInput required placeholder="" formControlName="nameField4">
+            </mat-form-field>
+            (name of the person conducting ultrasonography/image scanning) declare
+            that while conducting ultrasonography/image scanning on Ms./Mr.
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Name</mat-label>
+              <input matInput required placeholder="" formControlName="nameField5">
+            </mat-form-field>
+            (name of the pregnant woman or the person undergoing pre natal diagnostic procedure/test), I have neither detected
+            nor disclosed the sex of her fetus to anybody in any manner
+            <br>
+            Date:
+            <mat-form-field appearance="fill">
+              <mat-label>Choose a date</mat-label>
+              <input matInput required [matDatepicker]="picker4" formControlName="date4">
+              <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+              <mat-datepicker #picker4></mat-datepicker>
+            </mat-form-field>
+            <br>
+            <hr>
+            <button type="submit" class="btn btn-dark button">Submit</button>
+            <button class="btn btn-dark" type="button" (click)="onClickReset()">Reset</button>
+          </form>
+    </div>
+  </div>
+</div>
