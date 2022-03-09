@@ -1,0 +1,51 @@
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+td {
+  padding-right: 8px;
+}
+strong {
+  margin-bottom: 10px;
+}
+.container {
+  text-align: center;
+  margin-top: 40px;
+  padding-left: 25px;
+}
+
+.sub-head {
+  font-size: 20px;
+  font-weight: 600;
+  font-family: "Times New Roman", Times, serif;
+  text-align: start;
+}
+.self-referrral-msg {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 16px;
+  font-weight: 600;
+}
+h2 {
+  text-decoration: underline;
+  font-family: "Times New Roman", Times, serif;
+}
+p {
+  font-family: "Times New Roman", Times, serif;
+}
+button {
+  margin-right: 20px;
+  box-shadow: 0px 0px 4px 4px #dbdbdb;
+  margin-bottom: 8px;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: flex-start;
+}

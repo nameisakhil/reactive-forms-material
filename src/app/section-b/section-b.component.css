@@ -1,0 +1,59 @@
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.container {
+  text-align: center;
+  margin-top: 40px;
+  width: 100vw;
+}
+strong {
+  margin-bottom: 10px;
+}
+h2 {
+  text-decoration: underline;
+  font-family: "Times New Roman", Times, serif;
+}
+p {
+  font-family: "Times New Roman", Times, serif;
+}
+button {
+  margin-right: 20px;
+  box-shadow: 0px 0px 4px 4px #dbdbdb;
+  margin-bottom: 8px;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: flex-start;
+}
+.sub-head {
+  font-size: 20px;
+  font-weight: 600;
+  font-family: "Times New Roman", Times, serif;
+  text-align: start;
+  margin-top: 10px;
+}
+.message {
+  text-align: start;
+  font-weight: 600;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 2px;
+}
+.checkbox-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 20px;
+}
+.align {
+  text-align: left;
+}

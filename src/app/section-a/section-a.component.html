@@ -1,0 +1,84 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h2 routerLink="/home">FORM-F</h2>
+      <p>[See provision to Section 4(3), rule 9(4) and rule 10(1A)]</p>
+      <p>(New amended on 4th February, 2014 notified on 31st January 2014)</p>
+      <p><strong>FOR MAINTENANCE OF RECORD IN CASE OF PRENATAL DIAGNOSTIC TEST / PROCEDURE BY GENETIC CLINIC / ULTRASOUND CLINIC / IMAGING CENTRE</strong></p>
+      <div class="btn-container">
+        <button class="btn btn-light" routerLink="/sectionA">Section A</button>
+        <button class="btn btn-light" routerLink="/sectionB">Section B</button>
+        <button class="btn btn-light" routerLink="/sectionC">Section C</button>
+        <button class="btn btn-light" routerLink="/sectionD">Section D</button>
+
+      </div>
+
+      <form [formGroup]="Form1" (ngSubmit)="onAdd()">
+        <p class="sub-head">Section A:To be filled in for all Diagnostic Procedures/Tests</p>
+          <mat-form-field class="example-full-width" appearance="fill" >
+            <mat-label >Name and complete address of Genetic Clinic/ Ultrasound Clinic/ Imaging Centre:</mat-label>
+            <textarea matInput required placeholder="Ex. Indian acadamy..." id="nameandAddress" formControlName="nameandAddress"></textarea>
+          </mat-form-field>
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Registration No. (Under PC&PNDT Act, 1994)</mat-label>
+            <input matInput required placeholder="Ex. ASEd43556" id="regdNo" formControlName="regdNo">
+          </mat-form-field>
+          <table class="example-full-width" cellspacing="0"><tr>
+            <td><mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Patient’s name</mat-label>
+              <input matInput required id="patientname" formControlName="patientname">
+            </mat-form-field></td>
+            <td><mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Age</mat-label>
+              <input matInput type="number" required id="age" formControlName="age">
+            </mat-form-field></td>
+          </tr></table>
+          <div formGroupName="childrenGroup">
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Total Number of living children:</mat-label>
+            <input matInput type="number" required id="noOfChildren" formControlName="noOfChildren">
+          </mat-form-field>
+          <table class="example-full-width" cellspacing="0"><tr>
+            <td><mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Number of living Sons with age of each living son (in years or months):</mat-label>
+              <input matInput type="number" id="livingSons" formControlName="livingSons" required>
+            </mat-form-field></td>
+            <td><mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Number of living Daughters with age of each living daughter (in years or months):</mat-label>
+              <input matInput type="number" id="livingDaughters" formControlName="livingDaughters" required>
+            </mat-form-field></td>
+          </tr></table>
+        </div>
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Husband’s /Wife’s /Father’s /Mother’s Name:</mat-label>
+            <input matInput required id="otherName" formControlName="otherName">
+          </mat-form-field>
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Full postal address of the patient with Contact Number,if any</mat-label>
+            <textarea matInput id="postalAddress" formControlName="postalAddress"></textarea>
+          </mat-form-field>
+          <div formGroupName="referral">
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Referred by (Full name and address of Doctor(s)/ Genetic Counselling Centre):</mat-label>
+            <textarea matInput #message id="referreBy" formControlName="referredBy" required></textarea>
+            <mat-hint align="start"><strong>(Referral slips to be preserved carefully with Form F)</strong> </mat-hint>
+          </mat-form-field><p></p>
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label><strong>Self-Referral by </strong>Gynaecologists/ Radiologists/ Registered Medical Practitioner conducting the diagnostic
+              procedures:</mat-label>
+            <textarea matInput #message required id="selfReferral" formControlName="selfReferral"></textarea>
+            <mat-hint align="start"><strong>(Referral note with indications and case papers of the patient to be preserved with Form F)</strong> </mat-hint>
+          </mat-form-field><br>
+          </div>
+          <p class="self-referrral-msg">(Self-referral does not mean a client coming to a clinic and requesting for the test or the relative/s
+            requesting for the test of a pregnant woman)</p>
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Last menstrual period or weeks of pregnancy:</mat-label>
+            <input matInput required id="lastDate" formControlName="lastDate">
+          </mat-form-field>
+          <button class="btn btn-dark" type="submit">Submit</button>
+          <button class="btn btn-dark" type="button" (click)="onClickReset()">Reset</button>
+        </form>
+     </div>
+  </div>
+</div>

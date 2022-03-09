@@ -1,0 +1,83 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h2 routerLink="/home">FORM-F</h2>
+      <p>[See proviso to Section 4(3), rule 9(4) and rule 10(1A)]</p>
+      <p>(New amended on 4th February, 2014 notified on 31st January 2014)</p>
+      <p><strong>FOR MAINTENANCE OF RECORD IN CASE OF PRENATAL DIAGNOSTIC TEST / PROCEDURE BY GENETIC CLINIC / ULTRASOUND CLINIC / IMAGING CENTRE</strong></p>
+      <div class="btn-container">
+        <button class="btn btn-light" routerLink="/sectionA">Section A</button>
+        <button class="btn btn-light" routerLink="/sectionB">Section B</button>
+        <button class="btn btn-light" routerLink="/sectionC">Section C</button>
+        <button class="btn btn-light" routerLink="/sectionD">Section D</button>
+      </div>
+
+      <form [formGroup]="form2"  (ngSubmit)="onAdd()">
+        <p class="sub-head">Section B: To be filled in for performing non-invasive diagnostic Procedures/Tests only</p>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Name of the doctor performing the procedure/s:</mat-label>
+          <input matInput id="docter_name" formControlName="docter_name">
+        </mat-form-field><mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Indication/s for diagnosis procedure</mat-label>
+          <input matInput #message id="indications" formControlName="indications" required>
+          <mat-hint align="start"><strong>(specify with reference to the request made in the referral slip or in a self-referral note)</strong> </mat-hint>
+        </mat-form-field>
+          <p class="sub-head">Put a “Tick” against the appropriate indication/s for ultrasound</p>
+          <div *ngFor="let checkbox of checkboxList" formGroupName="checkBoxs" class="checkbox-container" >
+            <mat-checkbox formControlName={{checkbox}} (click)='onclickCheckBox({checkbox})'>{{checkbox}}</mat-checkbox>
+          </div>
+        <p class="sub-head">Procedures carried out (Non-Invasive) (Put a “Tick” on the appropriate procedure)</p>
+        <div class="align" >
+          <mat-radio-group aria-label="Select an option" formControlName="procedure">
+            <mat-radio-button value="UltraSound" (click)='onClickultrasound()'>Ultrasound</mat-radio-button>
+            <div formArrayName="otherProcedure">
+            <mat-radio-button value="AnyOther" (click)='onClickBtn()'>AnyOther</mat-radio-button>
+                <div *ngFor="let hobbyControl of getControls(); let i = index" >
+                  <mat-form-field class="example-full-width" appearance="fill" >
+                    <mat-label>Other Procedure</mat-label>
+                    <input matInput [formControlName]="i">
+                  </mat-form-field>
+                </div>
+          </div>
+          </mat-radio-group>
+      </div><br>
+      <mat-form-field class="example-full-width" appearance="fill" >
+        <mat-label>Date on which declaration of pregnant woman/person was obtained:</mat-label>
+        <input type="date" matInput formControlName="dateOfDeclaration" required>
+      </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="fill" >
+        <mat-label>Date on which procedures carried out:</mat-label>
+        <input type="date" matInput formControlName="dateOfProcedure" required>
+      </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="fill" >
+        <mat-label>Result of the non-invasive procedure carried out (report in brief of the test including ultrasound carried out)</mat-label>
+        <input matInput formControlName="resultOfProcedure" required>
+      </mat-form-field>
+      <table class="example-full-width" cellspacing="0"><tr>
+        <td><mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>The result of pre-natal diagnostic procedures was conveyed to</mat-label>
+          <input matInput formControlName="resultConveyedTo" required>
+        </mat-form-field></td>
+        <td><mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>on</mat-label>
+          <input type="date" matInput formControlName="resultConveyedOn" required>
+        </mat-form-field></td>
+      </tr></table>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Any indication for MTP as per the abnormality detected in the diagnostic procedures/tests</mat-label>
+        <input matInput formControlName="indication" required>
+      </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Date</mat-label>
+          <input type="date" matInput formControlName="date" required>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Place</mat-label>
+          <input matInput formControlName="place" required>
+        </mat-form-field>
+        <button class="btn btn-dark" type="submit">Submit</button>
+        <button class="btn btn-dark" type="button" (click)="onClickReset()">Reset</button>
+      </form>
+    </div>
+  </div>
+</div>

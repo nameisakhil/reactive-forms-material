@@ -1,8 +1,23 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12 col-sm-offset-1 col-md-offset-2">
-      <h3>SECTION C:To be filled for performing invasive Procedures/Tests only</h3>
+    <div class="col-md-12">
+      <div class="nav-container">
+        <h2 routerLink="/home">FORM-F</h2>
+        <p>[See provision to Section 4(3), rule 9(4) and rule 10(1A)]</p>
+        <p>(New amended on 4th February, 2014 notified on 31st January 2014)</p>
+        <p><strong>FOR MAINTENANCE OF RECORD IN CASE OF PRENATAL DIAGNOSTIC TEST / PROCEDURE BY GENETIC CLINIC / ULTRASOUND CLINIC / IMAGING CENTRE</strong></p>
+      </div>
+
+      <div class="btn-container">
+        <button class="btn btn-light" routerLink="/sectionA">Section A</button>
+        <button class="btn btn-light" routerLink="/sectionB">Section B</button>
+        <button class="btn btn-light" routerLink="/sectionC">Section C</button>
+        <button class="btn btn-light" routerLink="/sectionD">Section D</button>
+
+      </div>
+
       <form [formGroup]="sectionC" (ngSubmit)="onSubmit()" >
+        <p class="sub-head">SECTION C:To be filled for performing invasive Procedures/Tests only</p>
         <mat-form-field class="example-full-width width-100" appearance="fill" >
           <mat-label>Name of the doctor/s performing the procedure/s:</mat-label>
           <input matInput required placeholder="Ex. Dr.Akhil" value="" formControlName="doctorName">
@@ -56,8 +71,8 @@
 
           </mat-label>
           <mat-checkbox class="example-margin width-100 margin-left" formControlName="advancedMaternalAge">B. Advanced maternal age (35 years)</mat-checkbox>
-          <section class="margin-left">
-            <mat-label class="margin-left width-100 margin-left">C. Mother/father/sibling has genetic disease (specify)
+          <section class="margin-left-10">
+            <mat-label class="width-100">C. Mother/father/sibling has genetic disease (specify)
               <ul>
                 <li>
                   <mat-checkbox class="example-margin width-50" formControlName="mother">Mother</mat-checkbox>
@@ -74,8 +89,8 @@
 
 
           <mat-checkbox class="example-margin width-100 margin-left" formControlName="preImplantationGenderDiagnosis">D. Pre-implantation gender diagnosis</mat-checkbox>
-          <section class="margin-left">
-            <span class="margin-left">
+          <section >
+            <span class="margin-left-10">
               E.
               <mat-form-field class="example-full-width width-50 " appearance="fill" >
                 <mat-label>Any other (specify)</mat-label>
@@ -125,8 +140,11 @@
             <input matInput value="" formControlName="recommendedAditionalTestsOthersDetail">
           </mat-form-field>
         </section>
-        <button type="submit" class="btn btn-dark button">Submit</button>
-        <button class="btn btn-dark" type="button" (click)="onClickReset()">Reset</button>
+        <div class="footer-btn-container">
+          <button type="submit" class="btn btn-dark button">Submit</button>
+          <button class="btn btn-dark" type="button" (click)="onClickReset()">Reset</button>
+        </div>
+
       </form>
 
     </div>

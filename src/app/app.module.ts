@@ -14,13 +14,21 @@ import {MatNativeDateModule} from '@angular/material/core';
 import { SectionDformFComponent } from './section-dform-f/section-dform-f.component';
 import {MatSelectModule} from '@angular/material/select';
 import { SignaturePadModule } from 'angular2-signaturepad';
+import { HomeComponent } from './home/home.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { SectionAComponent } from './section-a/section-a.component';
+import { SectionBComponent } from './section-b/section-b.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     SectionCFormFComponent,
-    SectionDformFComponent
+    SectionDformFComponent,
+    HomeComponent,
+    NotFoundComponent,
+    SectionAComponent,
+    SectionBComponent
   ],
   imports: [
     BrowserModule,
