@@ -9,11 +9,12 @@
       </div>
 
       <div class="btn-container">
-        <button class="btn btn-light" routerLink="/sectionA">Section A</button>
-        <button class="btn btn-light" routerLink="/sectionB">Section B</button>
-        <button class="btn btn-light" routerLink="/sectionC">Section C</button>
-        <button class="btn btn-light" routerLink="/sectionD">Section D</button>
-
+        <mat-button-toggle-group name="fontStyle" aria-label="Font Style" [formControl]="fontStyleControl">
+          <mat-button-toggle value="sectionA" routerLink="/sectionA" routerLinkActive="active">Section A</mat-button-toggle>
+          <mat-button-toggle value="sectionB" routerLink="/sectionB" routerLinkActive="active">Section B</mat-button-toggle>
+          <mat-button-toggle value="sectionC" routerLink="/sectionC" routerLinkActive="active">Section C</mat-button-toggle>
+          <mat-button-toggle value="sectionD" routerLink="/sectionD" routerLinkActive="active">Section D</mat-button-toggle>
+        </mat-button-toggle-group>
       </div>
       <p class="sub-head">SECTION D: Declaration
         <br>
@@ -113,7 +114,7 @@
               <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
               <mat-datepicker #picker4></mat-datepicker>
             </mat-form-field>
-            <p class="signature-box"> ________________________________________
+            <p class="signature-box"> _____________________________________
               Signature, Name in Conducting Diagnostic procedure
               Capitals, Registration Number with Seal of the
               Gynaecologist/Radiologist/Registered Medical Practitioner</p>

@@ -67,3 +67,18 @@ ul {
   align-items: center;
   margin-bottom: 20px;
 }
+/* add below classes*/
+.pd-5{
+  padding-left: 32px;
+}
+.pd-3{
+  padding-left: 12px;
+}
+.active{
+  background-color: whitesmoke;
+  font-weight: 600;
+}
+
+.width-40{
+  width: 630px;
+}

@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit,ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { SignaturePad } from 'angular2-signaturepad';
@@ -20,6 +21,9 @@ export class SectionDformFComponent implements OnInit {
     {value: 'female', viewValue: 'Female'},
     {value: 'others', viewValue: 'Others'},
   ];
+
+  fontStyleControl = new FormControl();
+
   signatureImg: string;
   @ViewChild(SignaturePad) signaturePad: SignaturePad;
   signaturePadOptions: Object = {
@@ -28,7 +32,7 @@ export class SectionDformFComponent implements OnInit {
     'canvasHeight': 300
   };
   sectionD: FormGroup;
-  constructor() { }
+  constructor(private httpClient:HttpClient) { }
 
   ngOnInit(): void {
     this.sectionD = new FormGroup({
@@ -75,6 +79,9 @@ export class SectionDformFComponent implements OnInit {
     if (this.sectionD.valid){
       confirm("Submitted Successfully!");
       console.log(this.sectionD.value);
+      this.httpClient.post('https://reactive-forms-557b9-default-rtdb.firebaseio.com/sectionD.json',
+      this.sectionD.value).subscribe((response) => console.log(response));
+
     }
     else{
      confirm("Please enter the required fields!");

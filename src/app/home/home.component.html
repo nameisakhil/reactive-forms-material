@@ -5,10 +5,12 @@
       <p>[See provison to Section 4(3), rule 9(4) and rule 10(1A)]</p>
       <p>(New amended on 4th February, 2014 notified on 31st January 2014)</p>
       <p><strong>FOR MAINTENANCE OF RECORD IN CASE OF PRENATAL DIAGNOSTIC TEST / PROCEDURE BY GENETIC CLINIC / ULTRASOUND CLINIC / IMAGING CENTRE</strong></p>
-        <button class="btn btn-light" routerLink="/sectionA">Section A</button>
-        <button class="btn btn-light" routerLink="/sectionB">Section B</button>
-        <button class="btn btn-light" routerLink="/sectionC">Section C</button>
-        <button class="btn btn-light" routerLink="/sectionD">Section D</button>
+       <mat-button-toggle-group name="fontStyle" aria-label="Font Style" [formControl]="fontStyleControl">
+        <mat-button-toggle value="sectionA" routerLink="/sectionA" routerLinkActive="active">Section A</mat-button-toggle>
+        <mat-button-toggle value="sectionB" routerLink="/sectionB" routerLinkActive="active">Section B</mat-button-toggle>
+        <mat-button-toggle value="sectionC" routerLink="/sectionC">Section C</mat-button-toggle>
+        <mat-button-toggle value="sectionD" routerLink="/sectionD">Section D</mat-button-toggle>
+      </mat-button-toggle-group>
     </div>
   </div>
 </div>

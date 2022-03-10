@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormControl } from '@angular/forms';
+import { ActivatedRoute, Router, } from '@angular/router';
 
 @Component({
   selector: 'app-section-a',
@@ -9,10 +11,11 @@ import { FormGroup,FormControl } from '@angular/forms';
 export class SectionAComponent implements OnInit {
 
   Form1:FormGroup;
+  fontStyleControl = new FormControl()
 
   f1 = [];
 
-  constructor() { }
+  constructor(private httpClient:HttpClient,private router:Router, private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
       this.Form1 = new FormGroup({
@@ -47,6 +50,9 @@ export class SectionAComponent implements OnInit {
     if (this.Form1.valid){
       confirm("Submitted Successfully!");
       console.log(this.Form1.value);
+      this.httpClient.post('https://reactive-forms-557b9-default-rtdb.firebaseio.com/sectionA.json',
+      this.Form1.value).subscribe((response) => console.log(response));
+      this.router.navigate(["../", 'sectionB'],{relativeTo:this.activatedRoute})
     }
     else{
      confirm("Please enter the required fields!");

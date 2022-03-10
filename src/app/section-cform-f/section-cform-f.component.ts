@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router,ActivatedRoute } from '@angular/router';
 
 export interface Diagnosis{
   name: string,
@@ -15,11 +17,11 @@ export interface Diagnosis{
 })
 export class SectionCFormFComponent implements OnInit {
 
-  sectionC:FormGroup
-
+  sectionC:FormGroup;
+  fontStyleControl = new FormControl();
 
   allComplete: boolean = false
-  constructor() { }
+  constructor(private httpClient:HttpClient,private router:Router,private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
     this.sectionC = new FormGroup({
@@ -78,7 +80,9 @@ export class SectionCFormFComponent implements OnInit {
     if (this.sectionC.valid){
       confirm("Submitted Successfully!");
       console.log(this.sectionC.value);
-
+      this.httpClient.post('https://reactive-forms-557b9-default-rtdb.firebaseio.com/sectionC.json',
+      this.sectionC.value).subscribe((response) => console.log(response));
+      this.router.navigate(["../", 'sectionD'],{relativeTo:this.activatedRoute})
     }
     else{
      confirm("Please enter the required fields!");

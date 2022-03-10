@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import {HttpClientModule} from '@angular/common/http'
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 import { AppRoutingModule } from './app-routing.module';
@@ -18,6 +19,7 @@ import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { SectionAComponent } from './section-a/section-a.component';
 import { SectionBComponent } from './section-b/section-b.component';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 
 @NgModule({
@@ -28,7 +30,7 @@ import { SectionBComponent } from './section-b/section-b.component';
     HomeComponent,
     NotFoundComponent,
     SectionAComponent,
-    SectionBComponent
+    SectionBComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,8 +43,10 @@ import { SectionBComponent } from './section-b/section-b.component';
     MatRadioModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    HttpClientModule,
     MatSelectModule,
-    SignaturePadModule
+    SignaturePadModule,
+    MatButtonToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -30,6 +30,8 @@ button {
   font-family: "Times New Roman", Times, serif;
 }
 
+
+
 .btn-container {
   display: flex;
   justify-content: flex-start;
@@ -52,8 +54,35 @@ button {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  flex-wrap: wrap;
   margin-left: 20px;
+  width: 80vw;
+  text-align: left;
 }
+
 .align {
   text-align: left;
+}
+
+mat-checkbox{
+  padding: 0px;
+}
+.active{
+  background-color: whitesmoke;
+  font-weight: 600;
+}
+
+::ng-deep .mat-checkbox-layout {
+  white-space: normal !important;
+}
+
+.w-50{
+  width: 50% ;
+}
+.form-container{
+  text-align: left;
+}
+.btn-container2{
+  display: flex;
+  justify-content: center;
 }
