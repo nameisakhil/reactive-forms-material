@@ -36,7 +36,7 @@
           <div class="signature-container">
             <mat-form-field appearance="fill">
               <mat-label>Choose a date</mat-label>
-              <input matInput required [matDatepicker]="picker" formControlName="date1">
+              <input matInput required [matDatepicker]="picker" formControlName="dateOfDeclaretion">
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
@@ -51,7 +51,7 @@
           Identified by (name)
             <mat-form-field class="example-full-width" appearance="fill">
               <mat-label>Name</mat-label>
-              <input matInput required placeholder="Ex. Akhil" formControlName="nameField3">
+              <input matInput required placeholder="Ex. Akhil" formControlName="nameOfIdentification">
             </mat-form-field>
           age
           <mat-form-field class="example-full-width" appearance="fill">
@@ -90,7 +90,7 @@
           <div class="signature-container">
             <mat-form-field appearance="fill">
               <mat-label>Choose a date</mat-label>
-              <input matInput [matDatepicker]="picker2" formControlName="date2">
+              <input matInput [matDatepicker]="picker2" formControlName="dateOfAttestation">
               <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
               <mat-datepicker #picker2></mat-datepicker>
             </mat-form-field>
@@ -104,13 +104,13 @@
             I,
             <mat-form-field class="example-full-width" appearance="fill">
               <mat-label>Name</mat-label>
-              <input matInput required placeholder="" formControlName="nameField4">
+              <input matInput required placeholder="" formControlName="nameOfPersonConductingTest">
             </mat-form-field>
             (name of the person conducting ultrasonography/image scanning) declare
             that while conducting ultrasonography/image scanning on Ms./Mr.
             <mat-form-field class="example-full-width" appearance="fill">
               <mat-label>Name</mat-label>
-              <input matInput required placeholder="" formControlName="nameField5">
+              <input matInput required placeholder="" formControlName="nameOfPersonReciveingTest">
             </mat-form-field>
             (name of the pregnant woman or the person undergoing pre natal diagnostic procedure/test), I have neither detected
             nor disclosed the sex of her fetus to anybody in any manner.
@@ -118,7 +118,7 @@
             <div class="signature-container">
               <mat-form-field appearance="fill">
                 <mat-label>Choose a date</mat-label>
-                <input matInput required [matDatepicker]="picker3" formControlName="date3">
+                <input matInput required [matDatepicker]="picker3" formControlName="dateOfConductingTest">
                 <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
                 <mat-datepicker #picker3></mat-datepicker>
               </mat-form-field>

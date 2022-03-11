@@ -34,19 +34,18 @@ export class SectionDformFComponent implements OnInit {
     this.sectionD = new FormGroup({
       'name':new FormControl(null),
       'diagnosis':new FormControl(null),
-      'nameField':new FormControl(null),
-      'date1': new FormControl(null),
-      'nameField3':new FormControl(null),
+      'dateOfDeclaretion': new FormControl(null),
+      'nameOfIdentification':new FormControl(null),
       'age': new FormControl(null),
       'gender': new FormControl(null),
       'relationship': new FormControl(null),
       'address':new  FormControl(null),
       'contactNumber':new FormControl(null,Validators.compose([Validators.minLength(10),
       Validators.maxLength(10),Validators.required])),
-      'date2': new FormControl(null),
-      'date3': new FormControl(null),
-      'nameField4': new FormControl(null),
-      'nameField5': new FormControl(null)
+      'dateOfAttestation': new FormControl(null),
+      'dateOfConductingTest': new FormControl(null),
+      'nameOfPersonConductingTest': new FormControl(null),
+      'nameOfPersonReciveingTest': new FormControl(null)
     })
   }
 
@@ -63,6 +62,8 @@ export class SectionDformFComponent implements OnInit {
       console.log(this.sectionD.value);
       this.httpClient.post('https://reactiveformsfirebaseproject-default-rtdb.asia-southeast1.firebasedatabase.app/sectionD.json',
       this.sectionD.value).subscribe((response) => console.log(response));
+
+      this.sectionD.reset();
      }
     else{
       // Adding failure dialog content in each component
