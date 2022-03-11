@@ -29,7 +29,9 @@ export class SectionCFormFComponent implements OnInit {
   ngOnInit(): void {
     this.sectionC = new FormGroup({
       'doctorName': new FormControl(null),
+      'geneticDisease':new FormControl(null),
       'geneticHistory':new FormControl(null),
+      'otherDiagnosis': new FormControl(null),
       'diagnosisProcedureIndications': new FormGroup({
 
         'chromosomalDisorders': new FormControl(null),
@@ -39,6 +41,7 @@ export class SectionCFormFComponent implements OnInit {
         'Haemoglobinopathy': new FormControl(null),
         'sexLinkedDisorders': new FormControl(null),
         'singleGeneDisorder': new FormControl(null),
+        'previousChildOrChildrenWithOthers': new FormControl(null),
         'previousChildOrChildrenWithOthersDetail': new FormControl(null),
         'advancedMaternalAge': new FormControl(null),
 
@@ -47,6 +50,7 @@ export class SectionCFormFComponent implements OnInit {
         'sibling': new FormControl(null),
 
         'preImplantationGenderDiagnosis': new FormControl(null),
+        'diagnosisProcedureIndicationsOthers': new FormControl(null),
 
         'diagnosisProcedureIndicationsOthersDetail': new FormControl(null)
 
@@ -58,7 +62,7 @@ export class SectionCFormFComponent implements OnInit {
         'chorionicVilliAspiration': new FormControl(null),
         'fetalBiopsy': new FormControl(null),
         'Cordocentesis': new FormControl(null),
-
+        "invasiveProceduresOthers":new FormControl(null),
         'invasiveProceduresOthersDetail': new FormControl(null)
 
       }),
@@ -68,11 +72,18 @@ export class SectionCFormFComponent implements OnInit {
         'biochemicalStudies':new FormControl(null),
         'molecularStudies':new FormControl(null),
         'preImplantationGenderDiagnosis': new FormControl(null),
-
+        'recommendedAditionalTestsOthers': new FormControl(null),
         'recommendedAditionalTestsOthersDetail': new FormControl(null)
 
 
-      })
+      }),
+      'resultsOfTheProcedures': new FormControl(null),
+      'proceduresCariedoutDate': new FormControl(null),
+      'preNatalCOnveyedTo': new FormControl(null),
+      'preNatalCOnveyedOn': new FormControl(null),
+      'MTPIndiaction': new FormControl(null),
+      'dateFIlled': new FormControl(null),
+      'place':new FormControl(null)
 
     })
 
@@ -87,7 +98,7 @@ export class SectionCFormFComponent implements OnInit {
         console.log(`Dialog result: ${result}`);
       });
       console.log(this.sectionC.value);
-      this.httpClient.post('https://reactive-forms-557b9-default-rtdb.firebaseio.com/sectionC.json',
+      this.httpClient.post('https://reactiveformsfirebaseproject-default-rtdb.asia-southeast1.firebasedatabase.app/sectionC.json',
       this.sectionC.value).subscribe((response) => console.log(response));
       this.router.navigate(["../", 'sectionD'],{relativeTo:this.activatedRoute})
     }

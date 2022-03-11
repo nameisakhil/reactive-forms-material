@@ -105,7 +105,7 @@ export class SectionBComponent implements OnInit {
       // const stringifiedValue = JSON.stringify(this.form2.value)
       console.log(this.form2.value);
 
-      this.http.post("https://reactive-forms-557b9-default-rtdb.firebaseio.com//sectionB.json", this.form2.value).subscribe(response => {
+      this.http.post("https://reactiveformsfirebaseproject-default-rtdb.asia-southeast1.firebasedatabase.app/sectionB.json", this.form2.value).subscribe(response => {
         console.log(response)
         this.form2.reset()
         this.router.navigate(["../", 'sectionC'],{relativeTo:this.activatedRoute})

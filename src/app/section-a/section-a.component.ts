@@ -57,7 +57,7 @@ export class SectionAComponent implements OnInit {
         console.log(`Dialog result: ${result}`);
       });
       console.log(this.Form1.value);
-      this.httpClient.post('https://reactive-forms-557b9-default-rtdb.firebaseio.com/sectionA.json',
+      this.httpClient.post('https://reactiveformsfirebaseproject-default-rtdb.asia-southeast1.firebasedatabase.app/sectionA.json',
       this.Form1.value).subscribe((response) => console.log(response));
       this.router.navigate(["../", 'sectionB'],{relativeTo:this.activatedRoute})
     }
