@@ -1,7 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit,ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SignaturePad } from 'angular2-signaturepad';
+import { FailureMsgComponent } from '../failure-msg/failure-msg.component';
+import { SuccessMsgComponent } from '../success-msg/success-msg.component';
 
 
 interface gender {
@@ -32,7 +36,7 @@ export class SectionDformFComponent implements OnInit {
     'canvasHeight': 300
   };
   sectionD: FormGroup;
-  constructor(private httpClient:HttpClient) { }
+  constructor(private httpClient:HttpClient,private dialog:MatDialog,private router:Router,private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
     this.sectionD = new FormGroup({
@@ -77,14 +81,23 @@ export class SectionDformFComponent implements OnInit {
 
   onSubmit(){
     if (this.sectionD.valid){
-      confirm("Submitted Successfully!");
+      // Adding success dialog content in each component
+      const dialogRef = this.dialog.open(SuccessMsgComponent);
+
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(`Dialog result: ${result}`);
+      });
       console.log(this.sectionD.value);
       this.httpClient.post('https://reactive-forms-557b9-default-rtdb.firebaseio.com/sectionD.json',
       this.sectionD.value).subscribe((response) => console.log(response));
-
-    }
+     }
     else{
-     confirm("Please enter the required fields!");
+      // Adding failure dialog content in each component
+      const dialogRef = this.dialog.open(FailureMsgComponent);
+
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(`Dialog result: ${result}`);
+      });
      console.log(this.sectionD.value);
     }
   }

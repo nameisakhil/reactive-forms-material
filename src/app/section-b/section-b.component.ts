@@ -3,6 +3,9 @@ import {FormGroup,FormControl,FormBuilder, FormArray} from '@angular/forms'
 import {Validators} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { SuccessMsgComponent } from '../success-msg/success-msg.component';
+import { MatDialog } from '@angular/material/dialog';
+import { FailureMsgComponent } from '../failure-msg/failure-msg.component';
 
 @Component({
   selector: 'app-section-b',
@@ -40,7 +43,7 @@ export class SectionBComponent implements OnInit {
   ];
   activeCheckList=[];
 
-  constructor(private fb:FormBuilder, private http:HttpClient, private router: Router, private activatedRoute:ActivatedRoute) { }
+  constructor(private fb:FormBuilder, private dialog:MatDialog,private http:HttpClient, private router: Router, private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
     /*
@@ -93,8 +96,11 @@ export class SectionBComponent implements OnInit {
 
   onAdd(){
     if (this.form2.valid){
-      confirm("Submitted Successfully!");
+      const dialogRef = this.dialog.open(SuccessMsgComponent);
 
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(`Dialog result: ${result}`);
+      });
       // const latsetId = localStorage.getItem('id');
       // const stringifiedValue = JSON.stringify(this.form2.value)
       console.log(this.form2.value);
@@ -108,7 +114,11 @@ export class SectionBComponent implements OnInit {
 
     }
     else{
-      confirm("Please enter the required fields!");
+      const dialogRef = this.dialog.open(FailureMsgComponent);
+
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(`Dialog result: ${result}`);
+      });
     }
   }
 

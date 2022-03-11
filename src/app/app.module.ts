@@ -20,6 +20,11 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { SectionAComponent } from './section-a/section-a.component';
 import { SectionBComponent } from './section-b/section-b.component';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { SuccessMsgComponent } from './success-msg/success-msg.component';
+import { FailureMsgComponent } from './failure-msg/failure-msg.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatButtonModule} from '@angular/material/button'
+
 
 
 @NgModule({
@@ -31,6 +36,8 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     NotFoundComponent,
     SectionAComponent,
     SectionBComponent,
+    SuccessMsgComponent,
+    FailureMsgComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,9 +53,11 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     HttpClientModule,
     MatSelectModule,
     SignaturePadModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatDialogModule,
+    MatButtonModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

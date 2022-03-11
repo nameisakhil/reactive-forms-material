@@ -21,7 +21,7 @@
           <input matInput id="docter_name" formControlName="docter_name">
         </mat-form-field><mat-form-field class="example-full-width" appearance="fill">
           <mat-label>Indication/s for diagnosis procedure</mat-label>
-          <input matInput #message id="indications" formControlName="indications" required>
+          <input matInput #message id="indications" formControlName="indications" >
           <mat-hint align="start"><strong>(specify with reference to the request made in the referral slip or in a self-referral note)</strong> </mat-hint>
         </mat-form-field>
           <p class="sub-head">Put a “Tick” against the appropriate indication/s for ultrasound</p>
@@ -49,38 +49,38 @@
       </div><br>
       <mat-form-field class="example-full-width" appearance="fill" >
         <mat-label>Date on which declaration of pregnant woman/person was obtained:</mat-label>
-        <input type="date" matInput formControlName="dateOfDeclaration" required>
+        <input type="date" matInput formControlName="dateOfDeclaration" >
       </mat-form-field>
       <mat-form-field class="example-full-width" appearance="fill" >
         <mat-label>Date on which procedures carried out:</mat-label>
-        <input type="date" matInput formControlName="dateOfProcedure" required>
+        <input type="date" matInput formControlName="dateOfProcedure" >
       </mat-form-field>
       <mat-form-field class="example-full-width" appearance="fill" >
         <mat-label>Result of the non-invasive procedure carried out (report in brief of the test including ultrasound carried out)</mat-label>
-        <input matInput formControlName="resultOfProcedure" required>
+        <input matInput formControlName="resultOfProcedure" >
       </mat-form-field>
       <table class="example-full-width" cellspacing="0"><tr>
         <td><mat-form-field class="example-full-width" appearance="fill">
           <mat-label>The result of pre-natal diagnostic procedures was conveyed to</mat-label>
-          <input matInput formControlName="resultConveyedTo" required>
+          <input matInput formControlName="resultConveyedTo" >
         </mat-form-field></td>
         <td><mat-form-field class="example-full-width" appearance="fill">
           <mat-label>on</mat-label>
-          <input type="date" matInput formControlName="resultConveyedOn" required>
+          <input type="date" matInput formControlName="resultConveyedOn" >
         </mat-form-field></td>
       </tr></table>
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Any indication for MTP as per the abnormality detected in the diagnostic procedures/tests</mat-label>
-        <input matInput formControlName="indication" required>
+        <input matInput formControlName="indication" >
       </mat-form-field>
       <mat-form-field  appearance="fill" class="w-50">
           <mat-label>Date</mat-label>
-          <input type="date" matInput formControlName="date" required>
+          <input type="date" matInput formControlName="date" >
         </mat-form-field>
         <br>
         <mat-form-field appearance="fill" class="w-50">
           <mat-label>Place</mat-label>
-          <input matInput formControlName="place" required>
+          <input matInput formControlName="place" >
         </mat-form-field><br>
         <div class="btn-container2">
         <button class="btn btn-dark" type="submit">Submit</button>

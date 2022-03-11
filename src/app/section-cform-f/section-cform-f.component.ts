@@ -1,7 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router,ActivatedRoute } from '@angular/router';
+import { FailureMsgComponent } from '../failure-msg/failure-msg.component';
+import { SuccessMsgComponent } from '../success-msg/success-msg.component';
 
 export interface Diagnosis{
   name: string,
@@ -21,7 +24,7 @@ export class SectionCFormFComponent implements OnInit {
   fontStyleControl = new FormControl();
 
   allComplete: boolean = false
-  constructor(private httpClient:HttpClient,private router:Router,private activatedRoute:ActivatedRoute) { }
+  constructor(private httpClient:HttpClient,private router:Router,private activatedRoute:ActivatedRoute,private dialog:MatDialog) { }
 
   ngOnInit(): void {
     this.sectionC = new FormGroup({
@@ -78,14 +81,22 @@ export class SectionCFormFComponent implements OnInit {
 
   onSubmit(){
     if (this.sectionC.valid){
-      confirm("Submitted Successfully!");
+      const dialogRef = this.dialog.open(SuccessMsgComponent);
+
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(`Dialog result: ${result}`);
+      });
       console.log(this.sectionC.value);
       this.httpClient.post('https://reactive-forms-557b9-default-rtdb.firebaseio.com/sectionC.json',
       this.sectionC.value).subscribe((response) => console.log(response));
       this.router.navigate(["../", 'sectionD'],{relativeTo:this.activatedRoute})
     }
     else{
-     confirm("Please enter the required fields!");
+      const dialogRef = this.dialog.open(FailureMsgComponent);
+
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(`Dialog result: ${result}`);
+      });
      console.log(this.sectionC.value);
     }
   }
