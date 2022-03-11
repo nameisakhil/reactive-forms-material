@@ -52,7 +52,7 @@ export class SectionAComponent implements OnInit {
 
     if (this.Form1.valid){
       const dialogRef = this.dialog.open(SuccessMsgComponent);
-
+      // dailog box
       dialogRef.afterClosed().subscribe(result => {
         console.log(`Dialog result: ${result}`);
       });
