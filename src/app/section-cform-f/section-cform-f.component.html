@@ -120,17 +120,20 @@
         </mat-form-field>
         <section class="example-section" formGroupName="invasiveProcedures">
           <mat-label class="width-100">Invasive procedures carried out (“Tick” on appropriate indication/s):
-            <mat-checkbox class="example-margin width-50 margin-left" formControlName="amniocentesis">Amniocentesis</mat-checkbox>
-            <mat-checkbox class="example-margin width-50 margin-left" formControlName="chorionicVilliAspiration">Chorionic Villi aspiration</mat-checkbox>
-            <mat-checkbox class="example-margin width-50 margin-left" formControlName="fetalBiopsy">Fetal biopsy</mat-checkbox>
-            <mat-checkbox class="example-margin width-50 margin-left" formControlName="Cordocentesis">Cordocentesis</mat-checkbox>
-
-            <mat-checkbox class="example-margin width-50 margin-left" formControlName="invasiveProceduresOthers">Any other (specify)</mat-checkbox>
-
-            <mat-form-field class="example-full-width width-50 margin-left margin-left-10" appearance="fill" *ngIf="sectionC.value.invasiveProcedures.invasiveProceduresOthers">
-              <mat-label>Any other (specify)</mat-label>
-              <input matInput required value="" formControlName="invasiveProceduresOthersDetail">
-            </mat-form-field> 
+            <section class="sub-group-block"> 
+              <mat-checkbox class="example-margin width-50 margin-left" formControlName="amniocentesis">Amniocentesis</mat-checkbox>
+              <mat-checkbox class="example-margin width-50 margin-left" formControlName="chorionicVilliAspiration">Chorionic Villi aspiration</mat-checkbox>
+              <mat-checkbox class="example-margin width-50 margin-left" formControlName="fetalBiopsy">Fetal biopsy</mat-checkbox>
+              <mat-checkbox class="example-margin width-50 margin-left" formControlName="Cordocentesis">Cordocentesis</mat-checkbox>
+  
+              <mat-checkbox class="example-margin width-50 margin-left" formControlName="invasiveProceduresOthers">Any other (specify)</mat-checkbox>
+  
+              <mat-form-field class="example-full-width width-50 margin-left margin-left-10" appearance="fill" *ngIf="sectionC.value.invasiveProcedures.invasiveProceduresOthers">
+                <mat-label>Any other (specify)</mat-label>
+                <input matInput required value="" formControlName="invasiveProceduresOthersDetail">
+              </mat-form-field> 
+            </section>
+            
           </mat-label>
 
         </section>
@@ -138,7 +141,7 @@
           <mat-label>Any complication/s of invasive procedure (specify):</mat-label>
           <input matInput value="" formControlName="invasiveProcedureComplications">
         </mat-form-field>
-        <section class="example-section" formGroupName="recommendedAditionalTests">
+        <section class="example-section sub-group-block" formGroupName="recommendedAditionalTests">
           <mat-label class="width-100">Additional tests recommended (please mention if applicable):</mat-label>
           <mat-checkbox class="example-margin width-50  margin-left" formControlName="chromosomalStudies">Chromosomal studies</mat-checkbox>
           <mat-checkbox class="example-margin width-50  margin-left" formControlName="biochemicalStudies">Biochemical studies</mat-checkbox>
@@ -179,29 +182,6 @@
           <input matInput required value="" formControlName="MTPIndiaction">
         </mat-form-field>
 
-        <section>
-          <div class="signature-container">
-            <div>
-              <mat-form-field class="block width-30" appearance="fill">
-                <mat-label>Choose a date</mat-label>
-                <input matInput required [matDatepicker]="picker4" formControlName="dateFIlled">
-                <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
-                <mat-datepicker #picker4></mat-datepicker>
-              </mat-form-field>
-              <mat-form-field class="width-30 margin-top" appearance="fill" >
-                <mat-label>Place</mat-label>
-                <input matInput required value="" formControlName="place">
-              </mat-form-field>
-            </div>
-            
-            <p class="signature-box"> ________________________________________
-              Name, Signature and Registration Number with Seal of
-              the Gynaecologist/Radiologist/Registered Medical
-              Practitioner performing diagnostic Procedure/s</p>
-          </div>
-
-        </section>
-        
         <div class="footer-btn-container margin-top" >
           <button type="submit" class="btn btn-dark button">Submit</button>
           <button class="btn btn-dark" type="button" (click)="onClickReset()">Reset</button>
