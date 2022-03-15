@@ -52,6 +52,8 @@ button {
 
 ul {
   list-style-type: none;
+  margin-bottom: 5px;
+  margin-top: auto;
 }
 
 .sub-head {
@@ -90,12 +92,13 @@ ul {
 .signature-box {
   border-style: dashed;
   border-width: 1px;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
   background-color: #fdf8f6;
-  padding: 30px;
+  padding: 10px;
   text-align: end;
-  width: 30vw;
-  padding-top: 70px;
+  width: 300px;
+  padding-top: 50px;
+  /* width: 350px */
 }
 .signature-container {
   display: flex;
@@ -106,6 +109,41 @@ ul {
 .margin-top {
   margin-top: 1vh;
 }
+
+.italic{
+  font-style: italic;
+  font-weight: 600;
+}
+
+.bold{
+  font-weight: 600;
+}
+
+.text-decoration{
+  text-decoration: underline;
+}
+
+#pdfContent{
+  width:595px;
+  height: 842px;
+  padding: 20px;
+  font-size: 8px;
+  line-height: inherit;
+}
+
+p{
+  margin-bottom: 5px;
+}
+
+h4{
+  font-size: 14px;
+  margin-bottom: 4px;
+  padding: 0px;
+}
+/* 
+#signature-box{
+  margin-left: auto;
+} */
 
 @media screen and (max-width:786px) {
   .sub-group-block{

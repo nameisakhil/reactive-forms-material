@@ -1,10 +1,13 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild, ElementRef } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router,ActivatedRoute } from '@angular/router';
 import { FailureMsgComponent } from '../failure-msg/failure-msg.component';
 import { SuccessMsgComponent } from '../success-msg/success-msg.component';
+
+import {jsPDF} from 'jspdf'
+
 
 export interface Diagnosis{
   name: string,
@@ -19,9 +22,12 @@ export interface Diagnosis{
   styleUrls: ['./section-cform-f.component.css']
 })
 export class SectionCFormFComponent implements OnInit {
+  @ViewChild("pdfContent",{static:false}) el!: ElementRef
 
   sectionC:FormGroup;
   fontStyleControl = new FormControl();
+  blankOneCondition:boolean = false;
+  blankTwoCondition:boolean = false;
 
   allComplete: boolean = false
   constructor(private httpClient:HttpClient,private router:Router,private activatedRoute:ActivatedRoute,private dialog:MatDialog) { }
@@ -48,48 +54,47 @@ export class SectionCFormFComponent implements OnInit {
         'mother': new FormControl(null),
         'father': new FormControl(null),
         'sibling': new FormControl(null),
-
-        'preImplantationGenderDiagnosis': new FormControl(null),
         'diagnosisProcedureIndicationsOthers': new FormControl(null),
-
         'diagnosisProcedureIndicationsOthersDetail': new FormControl(null)
 
 
       }),
       'pregnantWomanConsentDate': new FormControl(null),
       'invasiveProcedures': new FormGroup({
-        'amniocentesis': new FormControl(null),
-        'chorionicVilliAspiration': new FormControl(null),
-        'fetalBiopsy': new FormControl(null),
-        'Cordocentesis': new FormControl(null),
-        "invasiveProceduresOthers":new FormControl(null),
+        'amniocentesis': new FormControl(false),
+        'chorionicVilliAspiration': new FormControl(false),
+        'fetalBiopsy': new FormControl(false),
+        'Cordocentesis': new FormControl(false),
+        "invasiveProceduresOthers":new FormControl(false),
         'invasiveProceduresOthersDetail': new FormControl(null)
 
       }),
       'invasiveProcedureComplications': new FormControl(null),
       'recommendedAditionalTests': new FormGroup({
-        'chromosomalStudies': new FormControl(null),
-        'biochemicalStudies':new FormControl(null),
-        'molecularStudies':new FormControl(null),
-        'preImplantationGenderDiagnosis': new FormControl(null),
-        'recommendedAditionalTestsOthers': new FormControl(null),
+        'chromosomalStudies': new FormControl(false),
+        'biochemicalStudies':new FormControl(false),
+        'molecularStudies':new FormControl(false),
+        'preImplantationGenderDiagnosis': new FormControl(false),
+        'recommendedAditionalTestsOthers': new FormControl(false),
         'recommendedAditionalTestsOthersDetail': new FormControl(null)
 
 
       }),
       'resultsOfTheProcedures': new FormControl(null),
       'proceduresCariedoutDate': new FormControl(null),
-      'preNatalCOnveyedTo': new FormControl(null),
-      'preNatalCOnveyedOn': new FormControl(null),
+      'preNatalCOnveyedTo': new FormControl(""),
+      'preNatalCOnveyedOn': new FormControl(""),
       'MTPIndiaction': new FormControl(null),
       'dateFIlled': new FormControl(null),
       'place':new FormControl(null)
 
     })
-
+    // this.blankOneCondition = this.sectionC.value.preNatalCOnveyedTo.length >0
+    // this.blankTwoCondition = this.sectionC.value.preNatalCOnveyedOn.length >0
+    // console.log(this.blankOneCondition)
 
   }
-
+  
   onSubmit(){
     if (this.sectionC.valid){
       const dialogRef = this.dialog.open(SuccessMsgComponent);
@@ -118,5 +123,25 @@ export class SectionCFormFComponent implements OnInit {
     this.sectionC.reset();
   }
 
+  generatePDF(){
+    if (this.sectionC.valid){
+      let pdf = new jsPDF('p','pt','a4')
+
+      pdf.html(this.el.nativeElement,{
+        callback: (pdf) =>{
+          pdf.save("sectionC.pdf")
+        }
+      })
+    }
+    else{
+      const dialogRef = this.dialog.open(FailureMsgComponent);
+
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(`Dialog result: ${result}`);
+      });
+     console.log(this.sectionC.value);
+    }
+    
+  }
 
 }
