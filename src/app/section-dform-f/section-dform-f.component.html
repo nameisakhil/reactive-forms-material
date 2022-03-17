@@ -22,7 +22,7 @@
         <form class="example-form" [formGroup]="sectionD" (ngSubmit)="onSubmit()">
 
           I, Mrs. / Mr.
-  
+
           <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Name</mat-label>
             <input matInput required placeholder="Ex. Akhil"  formControlName="name">
@@ -43,8 +43,8 @@
             <!-- <p class="signature-box">Signature / thumb impression of the person
               undergoing the pre-natal Diagnostic Test/procedure</p> -->
           </div>
-  
-  
+
+
           <br>
           <p><strong>In case of thumb impression</strong></p>
           <hr>
@@ -73,8 +73,8 @@
             <input matInput required placeholder="Ex. Father" formControlName="relationship">
           </mat-form-field>
           <br>
-          address 
-          
+          address
+
           <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Address</mat-label>
             <input matInput required formControlName="address">
@@ -82,11 +82,11 @@
           and contact no
           <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Contact Number</mat-label>
-            <input type="number" matInput placeholder="Ex. 9898979796" minlength="10" maxlength="10" formControlName="contactNumber">
+            <input required type="number" matInput placeholder="Ex. 9898979796" minlength="10" maxlength="10" formControlName="contactNumber">
           </mat-form-field>
-  
+
           <br>
-  
+
           <div class="signature-container">
             <mat-form-field appearance="fill">
               <mat-label>Choose a date</mat-label>
@@ -95,11 +95,11 @@
               <mat-datepicker #picker2></mat-datepicker>
             </mat-form-field>
           </div>
-  
+
             <br>
-            
+
             <p><strong>Declaration of Doctor/Person conducting per natal diagnostic procedure/test </strong></p>
-          
+
             <hr>
             I,
             <mat-form-field class="example-full-width" appearance="fill">
@@ -127,18 +127,93 @@
                 Capitals, Registration Number with Seal of the
                 Gynaecologist/Radiologist/Registered Medical Practitioner</p> -->
             </div>
-  
-  
+
+
             <br>
             <hr>
-  
+
             <div class="footer-btn-container">
               <button type="submit" class="btn btn-dark button">Submit</button>
               <button class="btn btn-dark" type="button" (click)="onClickReset()">Reset</button>
+              <button class="btn btn-dark" type="button" (click)="generatePDFSectionD()">Generate PDF</button>
             </div>
-  
-  
+
+
           </form>
+          <div class="visibility-none">
+            <div class="row" id="pdfContent" #pdfContent>
+              <div>
+                <p class="bold">SECTION D: Declaration</p>
+                <p class="bold">DECLARATION OF THE PERSON UNDERGOING PRE-NATAL DIAGNOSTIC TEST</p>
+              </div>
+              <div>
+                <p>
+                  I, Mrs. / Mr. <span class="text-decoration bold">{{sectionD.value.name}}</span> declare that by undergoing
+                  <span class="text-decoration bold">{{sectionD.value.diagnosis}}</span> Pre-Natal diagnostic test/procedure. I do not want to know the
+                  sex of my foetus.
+                </p>
+                <div class="signature-container">
+                  <p>
+                    Date:- {{sectionD.value.dateOfDeclaretion | date:'dd/MM/yyyy'}}
+                  </p>
+                  <div>
+                    <p class="signature-box block" id="signature-box">
+
+                      Signature / thumb impression of the person
+                      undergoing the pre-natal Diagnostic Test/procedure
+                    </p>
+                  </div>
+                </div>
+
+                <br>
+                <p class="bold">In case of thumb impression</p>
+                <hr>
+                <p>
+                  Identified by (name) <span class="text-decoration bold">{{sectionD.value.nameOfIdentification}}</span> age <span class="text-decoration bold">
+                  {{sectionD.value.age}}</span> sex <span class="text-decoration bold">{{sectionD.value.gender}}</span>relation (if any)  <span class="text-decoration bold">
+                  {{sectionD.value.relationship}}</span> address<span class="text-decoration bold">{{sectionD.value.address}}</span>
+                   and contact no
+                  <span class="text-decoration bold">{{sectionD.value.contactNumber}}</span>
+                </p>
+                <div class="signature-container">
+                  <p>
+                    Date:- <span class="text-decoration bold">{{sectionD.value.dateOfAttestation | date:'dd/MM/yyyy'}}</span>
+                  </p>
+                  <div>
+                    <p class="signature-box block" id="signature-box">
+
+                      Signature of the person attesting thumb impression
+                    </p>
+                  </div>
+                </div>
+                <br>
+                <p class="bold">Declaration of Doctor/Person conducting per natal diagnostic procedure/test</p>
+                <hr>
+                <p>
+                  I, <span class="text-decoration bold">{{sectionD.value.nameOfPersonConductingTest}}</span> (name of the person conducting ultrasonography/image scanning) declare
+                  that while conducting ultrasonography/image scanning on Ms./Mr.
+                  <span class="text-decoration bold">{{sectionD.value.nameOfPersonReciveingTest}}</span>
+                  (name of the pregnant woman or the person undergoing pre natal diagnostic procedure/test), I have neither detected
+                  nor disclosed the sex of her fetus to anybody in any manner.
+                </p>
+                <div class="signature-container">
+                  <p>
+                    Date:- <span class="text-decoration bold">{{sectionD.value.dateOfConductingTest | date:'dd/MM/yyyy'}}</span>
+                  </p>
+                  <div>
+                    <p class="signature-box block" id="signature-box">
+
+                      Signature: ____________________________________________________
+                      <br>
+                      Name in Conducting Diagnostic procedure
+                      Capitals, Registration Number with Seal of the
+                      Gynaecologist/Radiologist/Registered Medical Practitioner
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
       </div>
   </div>
 </div>

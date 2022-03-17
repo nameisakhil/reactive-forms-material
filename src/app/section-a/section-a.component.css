@@ -53,3 +53,10 @@ button {
   display: flex;
   justify-content: flex-start;
 }
+#pdfContent{
+  text-align: left;
+  justify-content: flex-start;
+}
+ul{
+  list-style-type: none;
+}

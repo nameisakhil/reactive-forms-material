@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild,ElementRef } from '@angular/core';
 import {FormGroup,FormControl,FormBuilder, FormArray} from '@angular/forms'
 import {Validators} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -7,13 +7,14 @@ import { SuccessMsgComponent } from '../success-msg/success-msg.component';
 import { MatDialog } from '@angular/material/dialog';
 import { FailureMsgComponent } from '../failure-msg/failure-msg.component';
 
+import {jsPDF} from 'jspdf'
 @Component({
   selector: 'app-section-b',
   templateUrl: './section-b.component.html',
   styleUrls: ['./section-b.component.css']
 })
 export class SectionBComponent implements OnInit {
-
+  @ViewChild("pdfContent",{static:false}) el!: ElementRef
   form2:FormGroup;
   fontStyleControl = new FormControl();
 
@@ -44,7 +45,8 @@ export class SectionBComponent implements OnInit {
   activeCheckList=[];
 
   constructor(private fb:FormBuilder, private dialog:MatDialog,private http:HttpClient, private router: Router, private activatedRoute:ActivatedRoute) { }
-
+  arrayBool:boolean= false
+  ultraBool:boolean = false
   ngOnInit(): void {
     /*
     this.form2 = new FormGroup({
@@ -124,12 +126,16 @@ export class SectionBComponent implements OnInit {
 
   onClickultrasound(){
     (<FormArray>this.form2.get('otherProcedure')).removeAt(0)
+    this.ultraBool = true
+    this.arrayBool = false
   }
 
   onClickBtn(){
     const control = new FormControl(null);
     if (this.form2.get('otherProcedure').value.length < 1){
       (<FormArray>this.form2.get('otherProcedure')).push(control);
+      this.arrayBool = this.form2.get("otherProcedure").value.length === 1
+      this.ultraBool = false
     }
 
   }
@@ -142,5 +148,26 @@ export class SectionBComponent implements OnInit {
     this.form2.reset();
   }
 
+  generatePDFSectionB(){
+    if (this.form2.valid){
+      let pdf = new jsPDF('p','pt','a4')
+
+      pdf.html(this.el.nativeElement,{
+        callback: (pdf) =>{
+          pdf.save("sectionB.pdf")
+        },
+        margin:20
+      })
+    }
+    else{
+      const dialogRef = this.dialog.open(FailureMsgComponent);
+
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(`Dialog result: ${result}`);
+      });
+     console.log(this.form2.value);
+    }
+
+  }
 
 }

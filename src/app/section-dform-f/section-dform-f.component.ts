@@ -1,11 +1,12 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit,ViewChild } from '@angular/core';
+import { Component, OnInit,ViewChild,ElementRef } from '@angular/core';
 import { FormControl, FormGroup,Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FailureMsgComponent } from '../failure-msg/failure-msg.component';
 import { SuccessMsgComponent } from '../success-msg/success-msg.component';
 
+import {jsPDF} from 'jspdf'
 
 interface gender {
   value: string;
@@ -18,7 +19,7 @@ interface gender {
   styleUrls: ['./section-dform-f.component.css']
 })
 export class SectionDformFComponent implements OnInit {
-
+  @ViewChild("pdfContent",{static:false}) el!: ElementRef
   genders: gender[] = [
     {value: 'male', viewValue: 'Male'},
     {value: 'female', viewValue: 'Female'},
@@ -78,6 +79,29 @@ export class SectionDformFComponent implements OnInit {
 
   onClickReset(){
     this.sectionD.reset();
+  }
+
+  generatePDFSectionD(){
+    if (this.sectionD.valid){
+      let pdf = new jsPDF('p','pt','a4')
+      // let pageCount = pdf.internal.getNumberOfPages();
+
+      pdf.html(this.el.nativeElement,{
+        callback: (pdf) =>{
+          pdf.save("sectionD.pdf")
+        },
+        margin:20
+      })
+    }
+    else{
+      const dialogRef = this.dialog.open(FailureMsgComponent);
+
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(`Dialog result: ${result}`);
+      });
+     console.log(this.sectionD.value);
+    }
+
   }
 
 

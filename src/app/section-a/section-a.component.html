@@ -80,7 +80,71 @@
           </mat-form-field>
           <button class="btn btn-dark" type="submit">Submit</button>
           <button class="btn btn-dark" type="button" (click)="onClickReset()">Reset</button>
+          <button class="btn btn-dark" type="button" (click)="generatePDFSectionB()">Generate PDF</button>
         </form>
+        <div>
+          <div class="row" id="pdfContent" #pdfContent>
+            <div>
+              <p class="bold fonts">SECTION A: To be filled in for all Diagnostic Procedures/Tests</p>
+              <p>
+                Name and complete address of Genetic Clinic/Ultrasound Clinic/Imaging Centre: &emsp; <span class="text-decoration bold">{{Form1.value.nameandAddress}}</span>
+              </p>
+              <p>
+                Registration No. (Under PC&PNDT Act, 1994): &emsp; <span class="text-decoration bold">{{Form1.value.regdNo}}</span>
+              </p>
+              <p>
+                Patient's name: &emsp; <span class="text-decoration bold">{{Form1.value.patientname}}</span> Age: &emsp; <span class="text-decoration bold">{{Form1.value.age}}</span>
+              </p>
+              <div>
+                <p>
+                  Total Number of living children: &emsp; <span class="text-decoration bold">{{Form1.value.childrenGroup.noOfChildren}}</span>
+                </p>
+                <ul>
+                  <li>
+                    Number of living Sons with age of each living son (in years or months): &emsp; <span class="text-decoration bold">{{Form1.value.childrenGroup.livingSons}}</span>
+                  </li>
+                  <li>
+                    Number of living Daughters with age of each living daughter (in years or months) : &emsp; <span class="text-decoration bold">{{Form1.value.childrenGroup.livingDaughters}}</span>
+                  </li>
+                </ul>
+              </div>
+              <p>
+                Husband's/Wife's/Father's/Mother's Name: &emsp; <span class="text-decoration bold">{{Form1.value.otherName}}</span>
+              </p>
+              <p>
+                Full postal address of the patient with Contact Number,if any: &emsp; <span class="bold">{{Form1.value.postalAddress}}</span>
+              </p>
+              <div>
+                <p>
+                  Referred by (Full name and address of Doctor(s)/ Genetic Counselling Centre) : <span class="bold">{{Form1.value.referral.referredBy}}</span>
+                  <br>
+                  &emsp; (Referral slips to be preserved carefully with Form F)
+                </p>
+
+                <p>
+                  <span class="bold"> Self-Referral </span> by Gynaecologists/Radiologists/Registered Medical Practitioner conducting the diagnostic procedures:
+                  <span class="text-decoration bold">{{Form1.value.referral.selfReferral}}</span>
+
+                  <br>
+                  (Referral note with indications and case papers of the patient to be preserved with Form F)
+                  <br>
+                  <span class="bold">
+                    (Self-referral does not mean a client coming to a clinic and requesting for the test or the relative/s
+                    requesting for the test of a pregnant woman)
+                  </span>
+                </p>
+                <p>
+                  Last menstrual period or weeks of pregnancy:
+                  <span class="text-decoration bold">{{Form1.value.lastDate}}</span>
+
+                </p>
+
+              </div>
+            </div>
+
+
+          </div>
+        </div>
      </div>
   </div>
 </div>

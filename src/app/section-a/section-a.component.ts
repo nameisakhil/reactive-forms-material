@@ -1,10 +1,12 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild,ElementRef } from '@angular/core';
 import { FormGroup,FormControl } from '@angular/forms';
 import { ActivatedRoute, Router, } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { SuccessMsgComponent } from '../success-msg/success-msg.component';
 import { FailureMsgComponent } from '../failure-msg/failure-msg.component';
+
+import {jsPDF} from 'jspdf'
 
 @Component({
   selector: 'app-section-a',
@@ -12,7 +14,7 @@ import { FailureMsgComponent } from '../failure-msg/failure-msg.component';
   styleUrls: ['./section-a.component.css']
 })
 export class SectionAComponent implements OnInit {
-
+  @ViewChild("pdfContent",{static:false}) el!: ElementRef
   Form1:FormGroup;
   fontStyleControl = new FormControl()
 
@@ -68,6 +70,30 @@ export class SectionAComponent implements OnInit {
           console.log(`Dialog result: ${result}`);
         });
     console.log(this.Form1.value);
+    }
+  }
+
+  generatePDFSectionB(){
+    if (this.Form1.valid){
+      let pdf = new jsPDF('p','pt','a4')
+
+      pdf.html(this.el.nativeElement,{
+        callback: (pdf) =>{
+          pdf.deletePage(2);
+          pdf.save("sectionA.pdf")
+        },
+        margin:20
+      })
+
+
+    }
+    else{
+      const dialogRef = this.dialog.open(FailureMsgComponent);
+
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(`Dialog result: ${result}`);
+      });
+     console.log(this.Form1.value);
     }
   }
 

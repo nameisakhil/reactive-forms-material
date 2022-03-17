@@ -28,8 +28,10 @@ export class SectionCFormFComponent implements OnInit {
   fontStyleControl = new FormControl();
   blankOneCondition:boolean = false;
   blankTwoCondition:boolean = false;
-
-  allComplete: boolean = false
+  allComplete: boolean = false;
+  options = {
+    pagesplit: true
+  };
   constructor(private httpClient:HttpClient,private router:Router,private activatedRoute:ActivatedRoute,private dialog:MatDialog) { }
 
   ngOnInit(): void {
@@ -94,7 +96,7 @@ export class SectionCFormFComponent implements OnInit {
     // console.log(this.blankOneCondition)
 
   }
-  
+
   onSubmit(){
     if (this.sectionC.valid){
       const dialogRef = this.dialog.open(SuccessMsgComponent);
@@ -130,7 +132,8 @@ export class SectionCFormFComponent implements OnInit {
       pdf.html(this.el.nativeElement,{
         callback: (pdf) =>{
           pdf.save("sectionC.pdf")
-        }
+        },
+        margin:20
       })
     }
     else{
@@ -141,7 +144,7 @@ export class SectionCFormFComponent implements OnInit {
       });
      console.log(this.sectionC.value);
     }
-    
+
   }
 
 }

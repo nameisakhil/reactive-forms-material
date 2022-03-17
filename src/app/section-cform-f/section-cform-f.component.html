@@ -25,7 +25,7 @@
         </mat-form-field>
         <mat-form-field class="example-full-width width-100 margin-top" appearance="fill" >
           <mat-label>History of genetic/medical disease in the family (specify):</mat-label>
-          <input matInput required placeholder="" value="" formControlName="geneticDisease">
+          <input matInput placeholder="" value="" formControlName="geneticDisease">
         </mat-form-field>
         <label id="genetic-history"> Basis of
           diagnosis (“Select” on appropriate basis of diagnosis)</label>
@@ -120,20 +120,20 @@
         </mat-form-field>
         <section class="example-section" formGroupName="invasiveProcedures">
           <mat-label class="width-100">Invasive procedures carried out (“Tick” on appropriate indication/s):
-            <section class="sub-group-block"> 
+            <section class="sub-group-block">
               <mat-checkbox class="example-margin width-50 margin-left" formControlName="amniocentesis">Amniocentesis</mat-checkbox>
               <mat-checkbox class="example-margin width-50 margin-left" formControlName="chorionicVilliAspiration">Chorionic Villi aspiration</mat-checkbox>
               <mat-checkbox class="example-margin width-50 margin-left" formControlName="fetalBiopsy">Fetal biopsy</mat-checkbox>
               <mat-checkbox class="example-margin width-50 margin-left" formControlName="Cordocentesis">Cordocentesis</mat-checkbox>
-  
+
               <mat-checkbox class="example-margin width-50 margin-left" formControlName="invasiveProceduresOthers">Any other (specify)</mat-checkbox>
-  
+
               <mat-form-field class="example-full-width width-50 margin-left margin-left-10" appearance="fill" *ngIf="sectionC.value.invasiveProcedures.invasiveProceduresOthers">
                 <mat-label>Any other (specify)</mat-label>
                 <input matInput required value="" formControlName="invasiveProceduresOthersDetail">
-              </mat-form-field> 
+              </mat-form-field>
             </section>
-            
+
           </mat-label>
 
         </section>
@@ -152,7 +152,7 @@
             <mat-label>Any other (specify)</mat-label>
             <input matInput required value="" formControlName="recommendedAditionalTestsOthersDetail">
           </mat-form-field>
-          
+
         </section>
 
         <mat-form-field class="example-full-width width-100 margin-top" appearance="fill" >
@@ -196,9 +196,9 @@
               </mat-form-field>
 
             </section>
-            
+
           </div>
-          
+
         </section>
 
         <div class="footer-btn-container margin-top" >
@@ -209,166 +209,199 @@
 
       </form>
 
-      <div class="row" id="pdfContent" #pdfContent>
-        <p class="bold">
-          SECTION C : <span class="italic"> To be filled for performing invasive Procedures/Tests only</span>
-        </p>
+      <div  class="visibility-none">
+        <div class="row" id="pdfContent" #pdfContent>
+          <p class="bold fonts">
+            SECTION C : <span class="italic fonts"> To be filled for performing invasive Procedures/Tests only</span>
+          </p>
 
-        <section>
-          <p>
-            Name of the doctor/s performing the procedure/s: <span class="text-decoration bold">{{sectionC.value.doctorName}}</span>
-          </p>
-          <p>
-            History of genetic/medical disease in the family (specify): <span class="text-decoration bold">{{sectionC.value.geneticDisease}}</span>
-          </p>
-          <p>
-            History of genetic/medical disease on basis of
-            diagnosis (“Tick” on appropriate basis of diagnosis): 
-            <span class="text-decoration bold" 
-              *ngIf="sectionC.value.geneticHistory !== 'others'; else otherDiagnosisHistory">
-              {{sectionC.value.geneticHistory}}
-            </span>
-            <ng-template #otherDiagnosisHistory> <span class="text-decoration bold">{{sectionC.value.otherDiagnosis}} </span> </ng-template>
-          </p>
           <section>
             <p>
-              Indication/s for the diagnosis procedure (“Tick” on appropriate indication/s):
+              Name of the doctor/s performing the procedure/s: <span class="text-decoration bold">{{sectionC.value.doctorName}}</span>
             </p>
-            <ul>
-              <li>
-                Previous child/children with:
-              </li>
-              <li *ngIf="sectionC.value.diagnosisProcedureIndications.chromosomalDisorders" class="margin-left">
-                Chromosomal disorders
-              </li>
-              <li *ngIf="sectionC.value.diagnosisProcedureIndications.metabolicDisorders" class="margin-left">
-                Metabolic disorders
-              </li>
-              <li *ngIf="sectionC.value.diagnosisProcedureIndications.congenitalAnomaly" class="margin-left">
-                Congenital anomaly
-              </li>
-              <li *ngIf="sectionC.value.diagnosisProcedureIndications.mentalDisability" class="margin-left">
-                Mental Disability
-              </li>
-              <li *ngIf="sectionC.value.diagnosisProcedureIndications.Haemoglobinopathy" class="margin-left">
-                Haemoglobinopathy
-              </li>
-              <li *ngIf="sectionC.value.diagnosisProcedureIndications.sexLinkedDisorders" class="margin-left">
-                Sex linked disorders
-              </li>
-              <li *ngIf="sectionC.value.diagnosisProcedureIndications.singleGeneDisorder" class="margin-left">
-                Single gene disorder
-              </li>
-              <li *ngIf="sectionC.value.diagnosisProcedureIndications.previousChildOrChildrenWithOthers" class="margin-left">
-                Any Others: 
-                <span class="block margin-left">
-                  {{sectionC.value.diagnosisProcedureIndications.previousChildOrChildrenWithOthersDetail}}
-                </span> 
-              </li>
-            </ul>
-            <ul>
-              <li>
-                Advanced maternal age (35 years): <span class="text-decoration bold"> {{sectionC.value.diagnosisProcedureIndications.advancedMaternalAge}}</span>
-              </li>
-            </ul>
-            <ul>
-              <li>
-                Mother/father/sibling has genetic disease:
-                <span class="text-decoration bold">
-                  <span *ngIf="sectionC.value.diagnosisProcedureIndications.mother">Mother,</span>
-                  <span *ngIf="sectionC.value.diagnosisProcedureIndications.father">Father,</span>
-                  <span *ngIf="sectionC.value.diagnosisProcedureIndications.sibling">Sibling</span>
-                </span>
-              </li>
-            </ul>
-            <ul>
-              <li>
-                Other (specify):
-              </li>
-              <li class="margin-left" *ngIf="sectionC.value.diagnosisProcedureIndications.diagnosisProcedureIndicationsOthers">
-                {{sectionC.value.diagnosisProcedureIndications.diagnosisProcedureIndicationsOthersDetail}}
-              </li>
-            </ul>
+            <p>
+              History of genetic/medical disease in the family (specify): <span class="text-decoration bold">{{sectionC.value.geneticDisease}}</span>
+            </p>
+            <p>
+              History of genetic/medical disease on basis of
+              diagnosis (“Tick” on appropriate basis of diagnosis):
+              <span class="text-decoration bold"
+                *ngIf="sectionC.value.geneticHistory !== 'others'; else otherDiagnosisHistory">
+                {{sectionC.value.geneticHistory}}
+              </span>
+              <ng-template #otherDiagnosisHistory> <span class="text-decoration bold">{{sectionC.value.otherDiagnosis}} </span> </ng-template>
+            </p>
+            <section>
+              <p>
+                Indication/s for the diagnosis procedure (“Tick” on appropriate indication/s):
+              </p>
+              <ul>
+                <li>
+                  Previous child/children with:
+                </li>
+                <li *ngIf="sectionC.value.diagnosisProcedureIndications.chromosomalDisorders" class="margin-left">
+                  <i class="fa-solid fa-check"></i><span class="text-decoration bold">  Chromosomal disorders </span>
+                </li>
+                <li *ngIf="sectionC.value.diagnosisProcedureIndications.metabolicDisorders" class="margin-left">
+                  <i class="fa-solid fa-check"></i><span class="text-decoration bold">Metabolic disorders</span>
+                </li>
+                <li *ngIf="sectionC.value.diagnosisProcedureIndications.congenitalAnomaly" class="margin-left">
+                  <i class="fa-solid fa-check"></i>
+                  <span class="text-decoration bold">
+                    Congenital anomaly
+                  </span>
 
-          </section>
-          <p>
-            Date on which consent of pregnant woman/person was obtained in Form G prescribed in PC&PNDT Act, 1994:
-            <span class="text-decoration bold">{{sectionC.value.pregnantWomanConsentDate| date:'dd/MM/yyyy' }}</span>
-          </p>
-          <section>
+                </li>
+                <li *ngIf="sectionC.value.diagnosisProcedureIndications.mentalDisability" class="margin-left">
+                  <i class="fa-solid fa-check"></i> <span class="text-decoration bold">Mental Disability</span>
+                </li>
+                <li *ngIf="sectionC.value.diagnosisProcedureIndications.Haemoglobinopathy" class="margin-left">
+                  <i class="fa-solid fa-check"></i><span class="text-decoration bold">Haemoglobinopathy</span>
+                </li>
+                <li *ngIf="sectionC.value.diagnosisProcedureIndications.sexLinkedDisorders" class="margin-left">
+                  <i class="fa-solid fa-check"></i><span class="text-decoration bold">Sex linked disorders</span>
+                </li>
+                <li *ngIf="sectionC.value.diagnosisProcedureIndications.singleGeneDisorder" class="margin-left">
+                  <i class="fa-solid fa-check"></i><span class="text-decoration bold">Single gene disorder</span>
+                </li>
+                <li *ngIf="sectionC.value.diagnosisProcedureIndications.previousChildOrChildrenWithOthers" class="margin-left">
+
+                  <span class="block">Any Others:</span>
+                  <span class="text-decoration margin-left bold">
+                    {{sectionC.value.diagnosisProcedureIndications.previousChildOrChildrenWithOthersDetail}}
+                  </span>
+                </li>
+              </ul>
+              <ul>
+                <li  *ngIf="sectionC.value.diagnosisProcedureIndications.advancedMaternalAge">
+                  <span class="main-text-decoration bold">Advanced maternal age (35 years)</span>
+                </li>
+              </ul>
+              <ul>
+                <li>
+                  <span class="block">Mother/father/sibling has genetic disease:</span>
+                  <span class="bold margin-left">
+                    <span *ngIf="sectionC.value.diagnosisProcedureIndications.mother" class="block margin-left"><i class="fa-solid fa-check"></i> <span>Mother</span></span>
+                    <span *ngIf="sectionC.value.diagnosisProcedureIndications.father" class="block margin-left"><i class="fa-solid fa-check"></i><span>Father</span></span>
+                    <span *ngIf="sectionC.value.diagnosisProcedureIndications.sibling" class="block margin-left"><i class="fa-solid fa-check"></i><span>Sibling</span></span>
+                  </span>
+                </li>
+              </ul>
+              <ul>
+                <li *ngIf="sectionC.value.diagnosisProcedureIndications.diagnosisProcedureIndicationsOthers">
+                 <span class="block">
+                  Other (specify):
+                 </span>
+                 <span class="text-decoration bold margin-left"> {{sectionC.value.diagnosisProcedureIndications.diagnosisProcedureIndicationsOthersDetail}}</span>
+                </li>
+              </ul>
+
+            </section>
             <p>
-              Invasive procedures carried out (“Tick” on appropriate indication/s):
+              Date on which consent of pregnant woman/person was obtained in Form G prescribed in PC&PNDT Act, 1994:
+              <span class="text-decoration bold">{{sectionC.value.pregnantWomanConsentDate| date:'dd/MM/yyyy' }}</span>
             </p>
-            <ul>
-              <li>Amniocentesis: <span class="text-decoration bold">{{sectionC.value.invasiveProcedures.amniocentesis}}</span> </li>
-              <li>Chorionic Villi aspiration: <span class="text-decoration bold">{{sectionC.value.invasiveProcedures.chorionicVilliAspiration}}</span> </li>
-              <li>Fetal biopsy: <span class="text-decoration bold">{{sectionC.value.invasiveProcedures.fetalBiopsy}}</span> </li>
-              <li>Cordocentesis: <span class="text-decoration bold">{{sectionC.value.invasiveProcedures.Cordocentesis}}</span> </li>
-              <li>Any other (specify): <span class="text-decoration bold">{{sectionC.value.invasiveProcedures.invasiveProceduresOthersDetail}}</span> </li>
-            </ul>
-          </section>
-          <section>
-            <p>Any complication/s of invasive procedure (specify): <span class="text-decoration bold">{{sectionC.value.invasiveProcedureComplications}}</span></p>
-          </section>
-          <section>
-            <p>
-              Additional tests recommended (please mention if applicable):
-            </p>
-            <ul>
-              <li>
-                Chromosomal studies: <span class="text-decoration bold">{{sectionC.value.recommendedAditionalTests.chromosomalStudies}}</span>
-              </li>
-              <li>
-                Biochemical studies: <span class="text-decoration bold">{{sectionC.value.recommendedAditionalTests.biochemicalStudies}}</span>
-              </li>
-              <li>
-                Molecular studies: <span class="text-decoration bold">{{sectionC.value.recommendedAditionalTests.molecularStudies}}</span>
-              </li>
-              <li>
-                Pre-implantation gender diagnosis: <span class="text-decoration bold">{{sectionC.value.recommendedAditionalTests.preImplantationGenderDiagnosis}}</span>
-              </li>
-              <li>
-                Any other (specify): <span class="text-decoration bold" *ngIf="sectionC.value.recommendedAditionalTests.recommendedAditionalTestsOthers">{{sectionC.value.recommendedAditionalTests.recommendedAditionalTestsOthersDetail}}</span>
-              </li>
-            </ul>
-          </section>
-          <section>
-            <p>Result of the Procedures/Tests carried out (report in brief of the invasive tests/procedures carried out): <span class="text-decoration bold">{{sectionC.value.resultsOfTheProcedures}}</span></p>
-          </section>
-          <section>
-            <p>Date on which procedures carried out: <span class="text-decoration bold">{{sectionC.value.proceduresCariedoutDate | date:'dd/MM/yyyy'}}</span></p>
-          </section>
-          <section>
-            <p>The result of pre-natal diagnostic procedures was conveyed to <span class="text-decoration bold">{{sectionC.value.preNatalCOnveyedTo}}</span> 
-              <!-- <ng-template #blank1>____________________</ng-template> -->
-              on 
-              
-              <span class="text-decoration bold">{{sectionC.value.preNatalCOnveyedOn | date:'dd/MM/yyyy'}}</span></p>
-              <!-- <ng-template #blank2>____________________</ng-template> -->
-          </section>
-          <section>
-            <p>Any indication for MTP as per the abnormality detected in the diagnostic procedures/tests: 
-              <span class="text-decoration bold">{{sectionC.value.MTPIndiaction}}</span>
-            </p>
-          </section>
-          <div class="signature-container">
-            <div>
+            <section>
               <p>
-                Date: <span class="text-decoration bold">{{sectionC.value.dateFIlled | date:'dd/MM/yyyy'}}</span>
+                Invasive procedures carried out (“Tick” on appropriate indication/s):
               </p>
+              <ul>
+                <li *ngIf="sectionC.value.invasiveProcedures.amniocentesis">
+                  <i class="fa-solid fa-check"></i>
+                  <span class="text-decoration bold">
+                    Amniocentesis
+                  </span>
+                </li>
+                <li *ngIf="sectionC.value.invasiveProcedures.chorionicVilliAspiration" >
+                  <i class="fa-solid fa-check"></i>
+                  <span class="text-decoration bold">
+                    Chorionic Villi aspiration
+                  </span>
+                </li>
+                <li *ngIf="sectionC.value.invasiveProcedures.fetalBiopsy">
+                  <i class="fa-solid fa-check"></i>
+                  <span class="text-decoration bold">Fetal biopsy</span>
+                </li>
+                <li *ngIf="sectionC.value.invasiveProcedures.Cordocentesis" >
+                  <i class="fa-solid fa-check"></i>
+                  <span class="text-decoration bold">Cordocentesis</span>
+                </li>
+                <li *ngIf="sectionC.value.invasiveProcedures.invasiveProceduresOthers" >Any other (specify):
+                  <span class="text-decoration bold">{{sectionC.value.invasiveProcedures.invasiveProceduresOthersDetail}}</span>
+                </li>
+              </ul>
+            </section>
+            <section>
+              <p>Any complication/s of invasive procedure (specify): <span class="text-decoration bold">{{sectionC.value.invasiveProcedureComplications}}</span></p>
+            </section>
+            <section>
               <p>
-                Place: <span class="text-decoration bold">{{sectionC.value.place}}</span>
+                Additional tests recommended (please mention if applicable):
               </p>
+
+              <ul>
+                <li  *ngIf="sectionC.value.recommendedAditionalTests.chromosomalStudies">
+                  <i class="fa-solid fa-check"></i>
+                  <span class="text-decoration bold">Chromosomal studies</span>
+                </li>
+                <li  *ngIf="sectionC.value.recommendedAditionalTests.biochemicalStudies">
+                  <i class="fa-solid fa-check"></i>
+                  <span class="text-decoration bold">Biochemical studies</span>
+                </li>
+                <li *ngIf="sectionC.value.recommendedAditionalTests.molecularStudies">
+                  <i class="fa-solid fa-check"></i>
+                  <span class="text-decoration bold">Molecular studies</span>
+                </li>
+                <li  *ngIf="sectionC.value.recommendedAditionalTests.preImplantationGenderDiagnosis">
+                  <i class="fa-solid fa-check"></i>
+                  <span class="text-decoration bold">Pre-implantation gender diagnosis</span>
+                </li>
+                <li *ngIf="sectionC.value.recommendedAditionalTests.recommendedAditionalTestsOthers">
+                  Any other (specify): <span class="text-decoration bold">{{sectionC.value.recommendedAditionalTests.recommendedAditionalTestsOthersDetail}}</span>
+                </li>
+              </ul>
+            </section>
+            <section>
+              <p>Result of the Procedures/Tests carried out (report in brief of the invasive tests/procedures carried out): <span class="text-decoration bold">{{sectionC.value.resultsOfTheProcedures}}</span></p>
+            </section>
+            <section>
+              <p>Date on which procedures carried out: <span class="text-decoration bold">{{sectionC.value.proceduresCariedoutDate | date:'dd/MM/yyyy'}}</span></p>
+            </section>
+            <section>
+              <p>The result of pre-natal diagnostic procedures was conveyed to <span class="text-decoration bold">{{sectionC.value.preNatalCOnveyedTo}}</span>
+                <!-- <ng-template #blank1>____________________</ng-template> -->
+                on
+
+                <span class="text-decoration bold">{{sectionC.value.preNatalCOnveyedOn | date:'dd/MM/yyyy'}}</span></p>
+                <!-- <ng-template #blank2>____________________</ng-template> -->
+            </section>
+            <section>
+              <p>Any indication for MTP as per the abnormality detected in the diagnostic procedures/tests:
+                <span class="text-decoration bold">{{sectionC.value.MTPIndiaction}}</span>
+              </p>
+            </section>
+            <div class="signature-container">
+              <div>
+                <p>
+                  Date: <span class="text-decoration bold">{{sectionC.value.dateFIlled | date:'dd/MM/yyyy'}}</span>
+                </p>
+                <p>
+                  Place: <span class="text-decoration bold">{{sectionC.value.place}}</span>
+                </p>
+              </div>
+              <div>
+                <p class="signature-box block" id="signature-box">
+
+                  Name, Signature and Registration Number with Seal of
+                  the Gynaecologist/ Radiologist/Registered Medical
+                  Practitioner performing diagnostic Procedure/s</p>
+              </div>
             </div>
-            <p class="signature-box" id="signature-box">
-              
-              Name, Signature and Registration Number with Seal of
-              the Gynaecologist/ Radiologist/Registered Medical
-              Practitioner performing diagnostic Procedure/s</p>
-          </div>
-        </section>
+          </section>
 
+        </div>
       </div>
+
     </div>
   </div>
 </div>
