@@ -154,6 +154,7 @@ export class SectionBComponent implements OnInit {
 
       pdf.html(this.el.nativeElement,{
         callback: (pdf) =>{
+          pdf.deletePage(2);
           pdf.save("sectionB.pdf")
         },
         margin:20

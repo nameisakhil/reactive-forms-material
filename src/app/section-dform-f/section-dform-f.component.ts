@@ -88,6 +88,7 @@ export class SectionDformFComponent implements OnInit {
 
       pdf.html(this.el.nativeElement,{
         callback: (pdf) =>{
+          pdf.deletePage(2);
           pdf.save("sectionD.pdf")
         },
         margin:20

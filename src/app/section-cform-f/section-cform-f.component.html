@@ -29,7 +29,7 @@
         </mat-form-field>
         <label id="genetic-history"> Basis of
           diagnosis (“Select” on appropriate basis of diagnosis)</label>
-        <mat-radio-group aria-label="genetic-history" class="width-100 flex-space-between margin-left margin-top" formControlName="geneticHistory" required>
+        <mat-radio-group aria-label="genetic-history" class="width-100 flex-space-between margin-left margin-top" formControlName="geneticHistory">
           <mat-radio-button value="Clinical">Clinical</mat-radio-button>
           <mat-radio-button value="Bio Chemical" >Bio-chemical</mat-radio-button>
           <mat-radio-button value="Cytogenetic" >Cytogenetic</mat-radio-button>
@@ -179,7 +179,7 @@
         </section>
         <mat-form-field class="example-full-width width-100 margin-top" appearance="fill" >
           <mat-label>Any indication for MTP as per the abnormality detected in the diagnostic procedures/tests</mat-label>
-          <input matInput required value="" formControlName="MTPIndiaction">
+          <input matInput value="" formControlName="MTPIndiaction">
         </mat-form-field>
         <section>
           <div class="signature-container">
@@ -208,196 +208,311 @@
         </div>
 
       </form>
-
-      <div  class="visibility-none">
+      <!-- class="visibility-none" -->
+      <div  >
         <div class="row" id="pdfContent" #pdfContent>
-          <p class="bold fonts">
-            SECTION C : <span class="italic fonts"> To be filled for performing invasive Procedures/Tests only</span>
-          </p>
+          <div>
+            <p class="bold fonts">
+              SECTION C : <span class="italic fonts"> To be filled for performing invasive Procedures/Tests only</span>
+            </p>
 
-          <section>
-            <p>
-              Name of the doctor/s performing the procedure/s: <span class="text-decoration bold">{{sectionC.value.doctorName}}</span>
-            </p>
-            <p>
-              History of genetic/medical disease in the family (specify): <span class="text-decoration bold">{{sectionC.value.geneticDisease}}</span>
-            </p>
-            <p>
-              History of genetic/medical disease on basis of
-              diagnosis (“Tick” on appropriate basis of diagnosis):
-              <span class="text-decoration bold"
-                *ngIf="sectionC.value.geneticHistory !== 'others'; else otherDiagnosisHistory">
-                {{sectionC.value.geneticHistory}}
-              </span>
-              <ng-template #otherDiagnosisHistory> <span class="text-decoration bold">{{sectionC.value.otherDiagnosis}} </span> </ng-template>
-            </p>
             <section>
               <p>
-                Indication/s for the diagnosis procedure (“Tick” on appropriate indication/s):
+                17. Name of the doctor/s performing the procedure/s:
+                <span class="bold" *ngIf="sectionC.value.doctorName !==null; else doctorNameEmpty ">{{sectionC.value.doctorName}}</span>
+                <ng-template #doctorNameEmpty>
+                  <span>____________________</span>
+                </ng-template>
               </p>
-              <ul>
-                <li>
-                  Previous child/children with:
-                </li>
-                <li *ngIf="sectionC.value.diagnosisProcedureIndications.chromosomalDisorders" class="margin-left">
-                  <i class="fa-solid fa-check"></i><span class="text-decoration bold">  Chromosomal disorders </span>
-                </li>
-                <li *ngIf="sectionC.value.diagnosisProcedureIndications.metabolicDisorders" class="margin-left">
-                  <i class="fa-solid fa-check"></i><span class="text-decoration bold">Metabolic disorders</span>
-                </li>
-                <li *ngIf="sectionC.value.diagnosisProcedureIndications.congenitalAnomaly" class="margin-left">
-                  <i class="fa-solid fa-check"></i>
-                  <span class="text-decoration bold">
-                    Congenital anomaly
-                  </span>
-
-                </li>
-                <li *ngIf="sectionC.value.diagnosisProcedureIndications.mentalDisability" class="margin-left">
-                  <i class="fa-solid fa-check"></i> <span class="text-decoration bold">Mental Disability</span>
-                </li>
-                <li *ngIf="sectionC.value.diagnosisProcedureIndications.Haemoglobinopathy" class="margin-left">
-                  <i class="fa-solid fa-check"></i><span class="text-decoration bold">Haemoglobinopathy</span>
-                </li>
-                <li *ngIf="sectionC.value.diagnosisProcedureIndications.sexLinkedDisorders" class="margin-left">
-                  <i class="fa-solid fa-check"></i><span class="text-decoration bold">Sex linked disorders</span>
-                </li>
-                <li *ngIf="sectionC.value.diagnosisProcedureIndications.singleGeneDisorder" class="margin-left">
-                  <i class="fa-solid fa-check"></i><span class="text-decoration bold">Single gene disorder</span>
-                </li>
-                <li *ngIf="sectionC.value.diagnosisProcedureIndications.previousChildOrChildrenWithOthers" class="margin-left">
-
-                  <span class="block">Any Others:</span>
-                  <span class="text-decoration margin-left bold">
-                    {{sectionC.value.diagnosisProcedureIndications.previousChildOrChildrenWithOthersDetail}}
-                  </span>
-                </li>
-              </ul>
-              <ul>
-                <li  *ngIf="sectionC.value.diagnosisProcedureIndications.advancedMaternalAge">
-                  <span class="main-text-decoration bold">Advanced maternal age (35 years)</span>
-                </li>
-              </ul>
-              <ul>
-                <li>
-                  <span class="block">Mother/father/sibling has genetic disease:</span>
-                  <span class="bold margin-left">
-                    <span *ngIf="sectionC.value.diagnosisProcedureIndications.mother" class="block margin-left"><i class="fa-solid fa-check"></i> <span>Mother</span></span>
-                    <span *ngIf="sectionC.value.diagnosisProcedureIndications.father" class="block margin-left"><i class="fa-solid fa-check"></i><span>Father</span></span>
-                    <span *ngIf="sectionC.value.diagnosisProcedureIndications.sibling" class="block margin-left"><i class="fa-solid fa-check"></i><span>Sibling</span></span>
-                  </span>
-                </li>
-              </ul>
-              <ul>
-                <li *ngIf="sectionC.value.diagnosisProcedureIndications.diagnosisProcedureIndicationsOthers">
-                 <span class="block">
-                  Other (specify):
-                 </span>
-                 <span class="text-decoration bold margin-left"> {{sectionC.value.diagnosisProcedureIndications.diagnosisProcedureIndicationsOthersDetail}}</span>
-                </li>
-              </ul>
-
-            </section>
-            <p>
-              Date on which consent of pregnant woman/person was obtained in Form G prescribed in PC&PNDT Act, 1994:
-              <span class="text-decoration bold">{{sectionC.value.pregnantWomanConsentDate| date:'dd/MM/yyyy' }}</span>
-            </p>
-            <section>
               <p>
-                Invasive procedures carried out (“Tick” on appropriate indication/s):
+                18. (i) History of genetic/medical disease in the family (specify):
+                <span class="bold" *ngIf="sectionC.value.geneticDisease !==null; else geneticDisease">{{sectionC.value.geneticDisease}}</span>
+                <ng-template #geneticDisease>
+                  <span>____________________</span>
+                </ng-template>
               </p>
-              <ul>
-                <li *ngIf="sectionC.value.invasiveProcedures.amniocentesis">
-                  <i class="fa-solid fa-check"></i>
-                  <span class="text-decoration bold">
-                    Amniocentesis
-                  </span>
-                </li>
-                <li *ngIf="sectionC.value.invasiveProcedures.chorionicVilliAspiration" >
-                  <i class="fa-solid fa-check"></i>
-                  <span class="text-decoration bold">
-                    Chorionic Villi aspiration
-                  </span>
-                </li>
-                <li *ngIf="sectionC.value.invasiveProcedures.fetalBiopsy">
-                  <i class="fa-solid fa-check"></i>
-                  <span class="text-decoration bold">Fetal biopsy</span>
-                </li>
-                <li *ngIf="sectionC.value.invasiveProcedures.Cordocentesis" >
-                  <i class="fa-solid fa-check"></i>
-                  <span class="text-decoration bold">Cordocentesis</span>
-                </li>
-                <li *ngIf="sectionC.value.invasiveProcedures.invasiveProceduresOthers" >Any other (specify):
-                  <span class="text-decoration bold">{{sectionC.value.invasiveProcedures.invasiveProceduresOthersDetail}}</span>
-                </li>
-              </ul>
-            </section>
-            <section>
-              <p>Any complication/s of invasive procedure (specify): <span class="text-decoration bold">{{sectionC.value.invasiveProcedureComplications}}</span></p>
-            </section>
-            <section>
               <p>
-                Additional tests recommended (please mention if applicable):
-              </p>
+                18. (ii) History of genetic/medical disease on basis of
+                diagnosis (“Tick” on appropriate basis of diagnosis):
+                <span *ngIf="sectionC.value.geneticHistory !== null; else geneticHistoryEmpty ">
+                  <span class="bold"
+                  *ngIf="sectionC.value.geneticHistory !== 'others'; else otherDiagnosisHistory">
+                  {{sectionC.value.geneticHistory}}
+                  </span>
+                  <ng-template #otherDiagnosisHistory> <span class="bold">{{sectionC.value.otherDiagnosis}} </span> </ng-template>
 
-              <ul>
-                <li  *ngIf="sectionC.value.recommendedAditionalTests.chromosomalStudies">
-                  <i class="fa-solid fa-check"></i>
-                  <span class="text-decoration bold">Chromosomal studies</span>
-                </li>
-                <li  *ngIf="sectionC.value.recommendedAditionalTests.biochemicalStudies">
-                  <i class="fa-solid fa-check"></i>
-                  <span class="text-decoration bold">Biochemical studies</span>
-                </li>
-                <li *ngIf="sectionC.value.recommendedAditionalTests.molecularStudies">
-                  <i class="fa-solid fa-check"></i>
-                  <span class="text-decoration bold">Molecular studies</span>
-                </li>
-                <li  *ngIf="sectionC.value.recommendedAditionalTests.preImplantationGenderDiagnosis">
-                  <i class="fa-solid fa-check"></i>
-                  <span class="text-decoration bold">Pre-implantation gender diagnosis</span>
-                </li>
-                <li *ngIf="sectionC.value.recommendedAditionalTests.recommendedAditionalTestsOthers">
-                  Any other (specify): <span class="text-decoration bold">{{sectionC.value.recommendedAditionalTests.recommendedAditionalTestsOthersDetail}}</span>
-                </li>
-              </ul>
-            </section>
-            <section>
-              <p>Result of the Procedures/Tests carried out (report in brief of the invasive tests/procedures carried out): <span class="text-decoration bold">{{sectionC.value.resultsOfTheProcedures}}</span></p>
-            </section>
-            <section>
-              <p>Date on which procedures carried out: <span class="text-decoration bold">{{sectionC.value.proceduresCariedoutDate | date:'dd/MM/yyyy'}}</span></p>
-            </section>
-            <section>
-              <p>The result of pre-natal diagnostic procedures was conveyed to <span class="text-decoration bold">{{sectionC.value.preNatalCOnveyedTo}}</span>
-                <!-- <ng-template #blank1>____________________</ng-template> -->
-                on
+                </span>
+                <ng-template #geneticHistoryEmpty>
+                  <span>____________________</span>
+                </ng-template>
 
-                <span class="text-decoration bold">{{sectionC.value.preNatalCOnveyedOn | date:'dd/MM/yyyy'}}</span></p>
-                <!-- <ng-template #blank2>____________________</ng-template> -->
-            </section>
-            <section>
-              <p>Any indication for MTP as per the abnormality detected in the diagnostic procedures/tests:
-                <span class="text-decoration bold">{{sectionC.value.MTPIndiaction}}</span>
               </p>
-            </section>
-            <div class="signature-container">
-              <div>
+              <section>
                 <p>
-                  Date: <span class="text-decoration bold">{{sectionC.value.dateFIlled | date:'dd/MM/yyyy'}}</span>
+                  19. Indication/s for the diagnosis procedure (“Tick” on appropriate indication/s):
                 </p>
-                <p>
-                  Place: <span class="text-decoration bold">{{sectionC.value.place}}</span>
-                </p>
-              </div>
-              <div>
-                <p class="signature-box block" id="signature-box">
+                <ul>
+                  <li class="inline">
+                    Previous child/children with:
+                  </li>
+                  <span *ngIf="sectionC.value.diagnosisProcedureIndications.chromosomalDisorders !== null
+                    || sectionC.value.diagnosisProcedureIndications.metabolicDisorders !== null
+                    || sectionC.value.diagnosisProcedureIndications.congenitalAnomaly !== null
+                    || sectionC.value.diagnosisProcedureIndications.mentalDisability !== null
+                    || sectionC.value.diagnosisProcedureIndications.Haemoglobinopathy !== null
+                    || sectionC.value.diagnosisProcedureIndications.sexLinkedDisorders !== null
+                    || sectionC.value.diagnosisProcedureIndications.singleGeneDisorder !== null
+                    || sectionC.value.diagnosisProcedureIndications.previousChildOrChildrenWithOthers !== null
+                  ; else previousChildEmpty" class="wrap">
+                    <li *ngIf="sectionC.value.diagnosisProcedureIndications.chromosomalDisorders" class="margin-left">
+                      <i class="fa-solid fa-check"></i><span class=" bold">  Chromosomal disorders </span>
+                    </li>
+                    <li *ngIf="sectionC.value.diagnosisProcedureIndications.metabolicDisorders" class="margin-left">
+                      <i class="fa-solid fa-check"></i><span class=" bold">Metabolic disorders</span>
+                    </li>
+                    <li *ngIf="sectionC.value.diagnosisProcedureIndications.congenitalAnomaly" class="margin-left">
+                      <i class="fa-solid fa-check"></i>
+                      <span class=" bold">
+                        Congenital anomaly
+                      </span>
 
-                  Name, Signature and Registration Number with Seal of
-                  the Gynaecologist/ Radiologist/Registered Medical
-                  Practitioner performing diagnostic Procedure/s</p>
+                    </li>
+                    <li *ngIf="sectionC.value.diagnosisProcedureIndications.mentalDisability" class="margin-left">
+                      <i class="fa-solid fa-check"></i> <span class=" bold">Mental Disability</span>
+                    </li>
+                    <li *ngIf="sectionC.value.diagnosisProcedureIndications.Haemoglobinopathy" class="margin-left">
+                      <i class="fa-solid fa-check"></i><span class=" bold">Haemoglobinopathy</span>
+                    </li>
+                    <li *ngIf="sectionC.value.diagnosisProcedureIndications.sexLinkedDisorders" class="margin-left">
+                      <i class="fa-solid fa-check"></i><span class=" bold">Sex linked disorders</span>
+                    </li>
+                    <li *ngIf="sectionC.value.diagnosisProcedureIndications.singleGeneDisorder" class="margin-left">
+                      <i class="fa-solid fa-check"></i><span class=" bold">Single gene disorder</span>
+                    </li>
+                    <li *ngIf="sectionC.value.diagnosisProcedureIndications.previousChildOrChildrenWithOthers" class="margin-left">
+
+                      <span class="block"><i class="fa-solid fa-check"></i>Any Others:</span>
+                      <span class=" margin-left bold">
+                        {{sectionC.value.diagnosisProcedureIndications.previousChildOrChildrenWithOthersDetail}}
+                      </span>
+                    </li>
+                  </span>
+                  <ng-template #previousChildEmpty>
+                    ____________________
+                  </ng-template>
+                </ul>
+                <ul>
+                  <li  *ngIf="sectionC.value.diagnosisProcedureIndications.advancedMaternalAge">
+                    <span class="bold">Advanced maternal age (35 years)</span>
+                  </li>
+                </ul>
+                <ul>
+                  <li>
+                    <span class="">Mother/father/sibling has genetic disease:</span>
+                    <span class="bold margin-left" *ngIf="
+                      sectionC.value.diagnosisProcedureIndications.mother !== null
+                      || sectionC.value.diagnosisProcedureIndications.father !== null
+                      || sectionC.value.diagnosisProcedureIndications.sibling !== null
+                      ; else geneticDiseaseEmpty
+                    ">
+                      <span *ngIf="sectionC.value.diagnosisProcedureIndications.mother" class="block margin-left"><i class="fa-solid fa-check"></i> <span>Mother</span></span>
+                      <span *ngIf="sectionC.value.diagnosisProcedureIndications.father" class="block margin-left"><i class="fa-solid fa-check"></i><span>Father</span></span>
+                      <span *ngIf="sectionC.value.diagnosisProcedureIndications.sibling" class="block margin-left"><i class="fa-solid fa-check"></i><span>Sibling</span></span>
+                    </span>
+
+                    <ng-template #geneticDiseaseEmpty>
+                      ____________________
+                    </ng-template>
+                  </li>
+                </ul>
+                <ul>
+                  <li *ngIf="sectionC.value.diagnosisProcedureIndications.diagnosisProcedureIndicationsOthers">
+                   <span class="block">
+                    Other (specify):
+                   </span>
+                   <span class="bold margin-left"> {{sectionC.value.diagnosisProcedureIndications.diagnosisProcedureIndicationsOthersDetail}}</span>
+                  </li>
+                </ul>
+
+              </section>
+              <p>
+                20. Date on which consent of pregnant woman/person was obtained in Form G prescribed in PC&PNDT Act, 1994:
+                <span class="bold" *ngIf="sectionC.value.pregnantWomanConsentDate !== null; else pregnantWomanConsentDateEmpty">{{sectionC.value.pregnantWomanConsentDate| date:'dd/MM/yyyy' }}</span>
+                <ng-template #pregnantWomanConsentDateEmpty>
+                  _________________
+                </ng-template>
+              </p>
+              <section>
+                <p class="inline">
+                  21. Invasive procedures carried out (“Tick” on appropriate indication/s):
+                </p>
+                <ul *ngIf="sectionC.value.invasiveProcedures.amniocentesis !== false
+                  || sectionC.value.invasiveProcedures.chorionicVilliAspiration !== false
+                  || sectionC.value.invasiveProcedures.fetalBiopsy !== false
+                  || sectionC.value.invasiveProcedures.Cordocentesis !== false
+                  || sectionC.value.invasiveProcedures.invasiveProceduresOthers !== false
+                  ; else invasiveProcedureEmpty
+                " class="wrap">
+                  <li *ngIf="sectionC.value.invasiveProcedures.amniocentesis">
+                    <i class="fa-solid fa-check"></i>
+                    <span class="bold">
+                      Amniocentesis
+                    </span>
+                  </li>
+                  <li *ngIf="sectionC.value.invasiveProcedures.chorionicVilliAspiration" class="margin-left">
+                    <i class="fa-solid fa-check"></i>
+                    <span class="bold">
+                      Chorionic Villi aspiration
+                    </span>
+                  </li>
+                  <li *ngIf="sectionC.value.invasiveProcedures.fetalBiopsy" class="margin-left">
+                    <i class="fa-solid fa-check"></i>
+                    <span class="bold">Fetal biopsy</span>
+                  </li>
+                  <li *ngIf="sectionC.value.invasiveProcedures.Cordocentesis" class="margin-left">
+                    <i class="fa-solid fa-check"></i>
+                    <span class="bold">Cordocentesis</span>
+                  </li>
+                  <li *ngIf="sectionC.value.invasiveProcedures.invasiveProceduresOthers" class="margin-left">Any other (specify):
+                    <span class="bold">{{sectionC.value.invasiveProcedures.invasiveProceduresOthersDetail}}</span>
+                  </li>
+                </ul>
+                <ng-template #invasiveProcedureEmpty>
+                  ____________________
+                </ng-template>
+              </section>
+              <section>
+                <p >22. Any complication/s of invasive procedure (specify):
+                <span class="bold"
+                  *ngIf="sectionC.value.invasiveProcedureComplications !== null; else invasiveProcedureComplicationsEmpty"
+                >{{sectionC.value.invasiveProcedureComplications}}</span></p>
+
+                <ng-template #invasiveProcedureComplicationsEmpty>
+                  _________________
+                </ng-template>
+              </section>
+              <section>
+                <p class="inline">
+                  23. Additional tests recommended (please mention if applicable):
+                </p>
+
+                <ul *ngIf = "
+                  sectionC.value.recommendedAditionalTests.chromosomalStudies !== false
+                  || sectionC.value.recommendedAditionalTests.biochemicalStudies !== false
+                  || sectionC.value.recommendedAditionalTests.molecularStudies !== false
+                  || sectionC.value.recommendedAditionalTests.preImplantationGenderDiagnosis !== false
+                  || sectionC.value.recommendedAditionalTests.recommendedAditionalTestsOthers !== false
+                  ; else recommendedAditionalTestsEmpty
+                " class="wrap">
+                  <li  *ngIf="sectionC.value.recommendedAditionalTests.chromosomalStudies">
+                    <i class="fa-solid fa-check"></i>
+                    <span class="bold">Chromosomal studies</span>
+                  </li>
+                  <li  *ngIf="sectionC.value.recommendedAditionalTests.biochemicalStudies" class="margin-left">
+                    <i class="fa-solid fa-check"></i>
+                    <span class="bold">Biochemical studies</span>
+                  </li>
+                  <li *ngIf="sectionC.value.recommendedAditionalTests.molecularStudies" class="margin-left">
+                    <i class="fa-solid fa-check"></i>
+                    <span class="bold">Molecular studies</span>
+                  </li>
+                  <li  *ngIf="sectionC.value.recommendedAditionalTests.preImplantationGenderDiagnosis" class="margin-left">
+                    <i class="fa-solid fa-check"></i>
+                    <span class="bold">Pre-implantation gender diagnosis</span>
+                  </li>
+                  <li *ngIf="sectionC.value.recommendedAditionalTests.recommendedAditionalTestsOthers" class="margin-left">
+                    Any other (specify): <span class="bold">{{sectionC.value.recommendedAditionalTests.recommendedAditionalTestsOthersDetail}}</span>
+                  </li>
+                </ul>
+                <ng-template #recommendedAditionalTestsEmpty>
+                  _________________
+                </ng-template>
+              </section>
+              <section>
+                <p>24. Result of the Procedures/Tests carried out (report in brief of the invasive tests/procedures carried out):
+                  <span class="bold"
+                  *ngIf="sectionC.value.resultsOfTheProcedures !== null ;
+                    else resultsOfTheProceduresEmpty
+                  "
+                  >{{sectionC.value.resultsOfTheProcedures}}</span>
+                </p>
+                <ng-template #resultsOfTheProceduresEmpty>
+                  _________________
+                </ng-template>
+              </section>
+              <section>
+                <p>25. Date on which procedures carried out:
+                  <span class="bold" *ngIf="sectionC.value.proceduresCariedoutDate !== null; else proceduresCariedoutDateEmpty">
+                    {{sectionC.value.proceduresCariedoutDate | date:'dd/MM/yyyy'}}
+                  </span>
+                </p>
+                <ng-template #proceduresCariedoutDateEmpty>
+                  _________________
+                </ng-template>
+              </section>
+              <section>
+                <p>26. The result of pre-natal diagnostic procedures was conveyed to
+                  <span class="bold" *ngIf="sectionC.value.preNatalCOnveyedTo !== '' else preNatalCOnveyedToEmpty">{{sectionC.value.preNatalCOnveyedTo}}</span>
+                  <!-- <ng-template #blank1>____________________</ng-template> -->
+                  on
+
+                  <span class="bold" *ngIf="sectionC.value.preNatalCOnveyedOn !== '' else preNatalCOnveyedOnEmpty">{{sectionC.value.preNatalCOnveyedOn | date:'dd/MM/yyyy'}}</span></p>
+                  <!-- <ng-template #blank2>____________________</ng-template> -->
+                <ng-template #preNatalCOnveyedToEmpty>
+                  _________________
+                </ng-template>
+                <ng-template #preNatalCOnveyedOnEmpty>
+                  _________________
+                </ng-template>
+
+              </section>
+              <section>
+                <p>27. Any indication for MTP as per the abnormality detected in the diagnostic procedures/tests:
+                  <span class="bold" *ngIf="sectionC.value.MTPIndiaction !== null
+                  ; else MTPIndiactionEmpty
+                  ">{{sectionC.value.MTPIndiaction}}</span>
+                </p>
+                <ng-template #MTPIndiactionEmpty>
+                  _________________
+                </ng-template>
+              </section>
+              <div class="signature-container">
+                <div>
+                  <p>
+                    Date:
+                    <span class="bold"
+                      *ngIf="sectionC.value.dateFIlled !== null;
+                      else dateFIlledEmpty
+                    "
+                    >{{sectionC.value.dateFIlled | date:'dd/MM/yyyy'}}</span>
+                  </p>
+                  <ng-template #dateFIlledEmpty>
+                    _________________
+                  </ng-template>
+                  <p>
+                    Place: <span class="bold"
+                    *ngIf="sectionC.value.place !== null;
+                      else placeEmpty
+                    "
+                    >
+                    {{sectionC.value.place}}
+                    </span>
+                  </p>
+                  <ng-template #placeEmpty>
+                    _________________
+                  </ng-template>
+                </div>
+                <div>
+                  <p class="signature-box block" id="signature-box">
+
+                    Name, Signature and Registration Number with Seal of
+                    the Gynaecologist/ Radiologist/Registered Medical
+                    Practitioner performing diagnostic Procedure/s</p>
+                </div>
               </div>
-            </div>
-          </section>
+            </section>
+
+          </div>
 
         </div>
       </div>

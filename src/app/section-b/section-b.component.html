@@ -88,138 +88,204 @@
           <button class="btn btn-dark" type="button" (click)="generatePDFSectionB()">Generate PDF</button>
         </div>
       </form>
-      <div class="visibility-none">
+      <!-- class="visibility-none" -->
+      <div >
         <div class="row" id="pdfContent" #pdfContent>
-          <p class="bold">
-            SECTION B: To be filled in for performing non-invasive diagnostic Procedures/Tests only
-          </p>
           <div>
-            <p>Name of the doctor performing the procedure/s: <span class="text-decoration bold">{{form2.value.docter_name}}</span></p>
-            <p>Indication/s for diagnosis procedure <span class="text-decoration bold">{{form2.value.indications}}</span>
+            <p class="bold">
+              SECTION B: To be filled in for performing non-invasive diagnostic Procedures/Tests only
+            </p>
+            <div>
+              <p>9. Name of the doctor performing the procedure/s:
+                <span class="text-decoration bold" *ngIf="form2.value.docter_name !== null; else docter_name_empty">{{form2.value.docter_name}}</span>
+                <ng-template #docter_name_empty>
+                  ______________
+                </ng-template>
+              </p>
+              <p>10. Indication/s for diagnosis procedure
+                <span class="text-decoration bold" *ngIf="form2.value.indications !== null; else indicationsEmpty">{{form2.value.indications}}</span>
+                <ng-template #indicationsEmpty>
+                  ______________
+                </ng-template>
+                <br>
+                (specify with reference to the request made in the referral slip or in a self-referral note)
+              </p>
+              <p class="inline">
+                Put a “Tick” against the appropriate indication/s for ultrasound:
+              </p>
+              <ul *ngIf="form2.value.checkBoxs['To diagnose intra-uterine and or ectopic pregnancy and confirm viability'] !== false
+                || form2.value.checkBoxs['Estimation of gestational age (dating)'] !== false
+                || form2.value.checkBoxs['Vaginal bleeding OR leaking'] !== false
+                || form2.value.checkBoxs['Suspected pregnancy with IUCD in-situ or suspected pregnancy following contraceptive failure OR MTP failure'] !== false
+                || form2.value.checkBoxs['Follow-up of cases of abortion'] !== false
+                || form2.value.checkBoxs['Assessment of cervical canal and diameter of internal os'] !== false
+                || form2.value.checkBoxs['Discrepancy between uterine size and period of amenorrhea'] !== false
+                || form2.value.checkBoxs['Any suspected adenexal or uterine pathology OR abnormality'] !== false
+                || form2.value.checkBoxs['Detection of chromosomal abnormalities, fetal structural defects and other abnormalities and their follow-up'] !== false
+                || form2.value.checkBoxs['To evaluate fetal presentation and position'] !== false
+                || form2.value.checkBoxs['Assessment of liquor amnii'] !== false
+                || form2.value.checkBoxs['Preterm labor OR preterm premature rupture of membranes'] !== false
+                || form2.value.checkBoxs['Evaluation of placental position, thickness, grading and abnormalities (placenta praevia, retro placental haemorrhage, abnormal adherence etc'] !== false
+                || form2.value.checkBoxs['Evaluation of umbilical cord presentation, insertion, nuchal encirclement, number of vessels and presence of true knot'] !== false
+                || form2.value.checkBoxs['Evaluation of previous Caesarean Section scars'] !== false
+                || form2.value.checkBoxs['Evaluation of fetal growth parameters, fetal weight and fetal well being'] !== false
+                || form2.value.checkBoxs['Color flow mapping and duplex Doppler studies'] !== false
+                || form2.value.checkBoxs['Ultrasound guided procedures such as medical termination of pregnancy, external cephalic version etc and their follow-up'] !== false
+                || form2.value.checkBoxs['Adjunct to diagnostic and therapeutic invasive interventions such as chorionic villus sampling (CVS),amniocenteses, feel blood sampling, fetal skin biopsy, amnio-infusion, intrauterine infusion, placement of shunts etc'] !== false
+                || form2.value.checkBoxs['Observation of intra-partum events'] !== false
+                || form2.value.checkBoxs['Medical or surgical conditions complicating pregnancy'] !== false
+                || form2.value.checkBoxs['Research OR scientific studies in recognized institutions'] !== false ; else checkboxEmpty
+                " class="wrap">
+                <li *ngIf="form2.value.checkBoxs['To diagnose intra-uterine and or ectopic pregnancy and confirm viability']" class="margin-left-inline">
+                  <i class="fa-solid fa-check"></i> <span class="bold">To diagnose intra-uterine and or ectopic pregnancy and confirm viability</span>
+                </li>
+                <li *ngIf="form2.value.checkBoxs['Estimation of gestational age (dating)']" class="margin-left-inline">
+                  <i class="fa-solid fa-check"></i> <span class="bold">Estimation of gestational age (dating)</span>
+                </li>
+                <li *ngIf="form2.value.checkBoxs['Vaginal bleeding OR leaking']" class="margin-left-inline">
+                  <i class="fa-solid fa-check"></i> <span class="bold">Vaginal bleeding OR leaking</span>
+                </li>
+                <li *ngIf="form2.value.checkBoxs['Suspected pregnancy with IUCD in-situ or suspected pregnancy following contraceptive failure OR MTP failure']" class="margin-left-inline">
+                  <i class="fa-solid fa-check"></i> <span class="bold">Suspected pregnancy with IUCD in-situ or suspected pregnancy following contraceptive failure OR MTP failure</span>
+                </li>
+                <li *ngIf="form2.value.checkBoxs['Follow-up of cases of abortion']" class="margin-left-inline">
+                  <i class="fa-solid fa-check"></i> <span class="bold">Follow-up of cases of abortion</span>
+                </li>
+                <li *ngIf="form2.value.checkBoxs['Assessment of cervical canal and diameter of internal os']" class="margin-left-inline">
+                  <i class="fa-solid fa-check"></i> <span class="bold">Assessment of cervical canal and diameter of internal os</span>
+                </li>
+                <li *ngIf="form2.value.checkBoxs['Discrepancy between uterine size and period of amenorrhea']" class="margin-left-inline">
+                  <i class="fa-solid fa-check"></i> <span class="bold">Discrepancy between uterine size and period of amenorrhea</span>
+                </li>
+                <li *ngIf="form2.value.checkBoxs['Any suspected adenexal or uterine pathology OR abnormality']" class="margin-left-inline">
+                  <i class="fa-solid fa-check"></i> <span class="bold">Any suspected adenexal or uterine pathology OR abnormality</span>
+                </li>
+                <li *ngIf="form2.value.checkBoxs['Detection of chromosomal abnormalities, fetal structural defects and other abnormalities and their follow-up']" class="margin-left-inline">
+                  <i class="fa-solid fa-check"></i> <span class="bold">Detection of chromosomal abnormalities, fetal structural defects and other abnormalities and their follow-up</span>
+                </li>
+                <li *ngIf="form2.value.checkBoxs['To evaluate fetal presentation and position']" class="margin-left-inline">
+                  <i class="fa-solid fa-check"></i> <span class="bold">To evaluate fetal presentation and position</span>
+                </li>
+                <li *ngIf="form2.value.checkBoxs['Assessment of liquor amnii']" class="margin-left-inline">
+                  <i class="fa-solid fa-check"></i> <span class="bold">Assessment of liquor amnii</span>
+                </li>
+                <li *ngIf="form2.value.checkBoxs['Preterm labor OR preterm premature rupture of membranes']" class="margin-left-inline">
+                  <i class="fa-solid fa-check"></i> <span class="bold">Preterm labor OR preterm premature rupture of membranes</span>
+                </li>
+                <li *ngIf="form2.value.checkBoxs['Evaluation of placental position, thickness, grading and abnormalities (placenta praevia, retro placental haemorrhage, abnormal adherence etc']" class="margin-left-inline">
+                  <i class="fa-solid fa-check"></i> <span class="bold">Evaluation of placental position, thickness, grading and abnormalities (placenta praevia, retro placental haemorrhage, abnormal adherence etc</span>
+                </li>
+                <li *ngIf="form2.value.checkBoxs['Evaluation of umbilical cord presentation, insertion, nuchal encirclement, number of vessels and presence of true knot']" class="margin-left-inline">
+                  <i class="fa-solid fa-check"></i> <span class="bold">Evaluation of umbilical cord presentation, insertion, nuchal encirclement, number of vessels and presence of true knot</span>
+                </li>
+                <li *ngIf="form2.value.checkBoxs['Evaluation of previous Caesarean Section scars']" class="margin-left-inline">
+                  <i class="fa-solid fa-check"></i> <span class="bold">Evaluation of previous Caesarean Section scars</span>
+                </li>
+                <li *ngIf="form2.value.checkBoxs['Evaluation of fetal growth parameters, fetal weight and fetal well being']" class="margin-left-inline">
+                  <i class="fa-solid fa-check"></i> <span class="bold">Evaluation of fetal growth parameters, fetal weight and fetal well being</span>
+                </li>
+                <li *ngIf="form2.value.checkBoxs['Color flow mapping and duplex Doppler studies']" class="margin-left-inline">
+                  <i class="fa-solid fa-check"></i> <span class="bold">Color flow mapping and duplex Doppler studies</span>
+                </li>
+                <li *ngIf="form2.value.checkBoxs['Ultrasound guided procedures such as medical termination of pregnancy, external cephalic version etc and their follow-up']" class="margin-left-inline">
+                  <i class="fa-solid fa-check"></i> <span class="bold">Ultrasound guided procedures such as medical termination of pregnancy, external cephalic version etc and their follow-up</span>
+                </li>
+                <li *ngIf="form2.value.checkBoxs['Adjunct to diagnostic and therapeutic invasive interventions such as chorionic villus sampling (CVS),amniocenteses, feel blood sampling, fetal skin biopsy, amnio-infusion, intrauterine infusion, placement of shunts etc']" class="margin-left-inline">
+                  <i class="fa-solid fa-check"></i> <span class="bold">Adjunct to diagnostic and therapeutic invasive interventions such as chorionic villus sampling (CVS),amniocenteses, feel blood sampling, fetal skin biopsy, amnio-infusion, intrauterine infusion, placement of shunts etc</span>
+                </li>
+                <li *ngIf="form2.value.checkBoxs['Observation of intra-partum events']" class="margin-left-inline">
+                  <i class="fa-solid fa-check"></i> <span class="bold">Observation of intra-partum events</span>
+                </li>
+                <li *ngIf="form2.value.checkBoxs['Medical or surgical conditions complicating pregnancy']" class="margin-left-inline">
+                  <i class="fa-solid fa-check"></i> <span class="bold">Medical or surgical conditions complicating pregnancy</span>
+                </li>
+                <li *ngIf="form2.value.checkBoxs['Research OR scientific studies in recognized institutions']" class="margin-left-inline">
+                  <i class="fa-solid fa-check"></i> <span class="bold">Research OR scientific studies in recognized institutions</span>
+                </li>
+              </ul>
+              <ng-template #checkboxEmpty>
+                ______________
+              </ng-template>
               <br>
-              (specify with reference to the request made in the referral slip or in a self-referral note)
-            </p>
-            <p>
-              Put a “Tick” against the appropriate indication/s for ultrasound:
-            </p>
-            <ul>
-              <li *ngIf="form2.value.checkBoxs['To diagnose intra-uterine and or ectopic pregnancy and confirm viability']">
-                <i class="fa-solid fa-check"></i> <span class="bold">To diagnose intra-uterine and or ectopic pregnancy and confirm viability</span>
-              </li>
-              <li *ngIf="form2.value.checkBoxs['Estimation of gestational age (dating)']">
-                <i class="fa-solid fa-check"></i> <span class="bold">Estimation of gestational age (dating)</span>
-              </li>
-              <li *ngIf="form2.value.checkBoxs['Vaginal bleeding OR leaking']">
-                <i class="fa-solid fa-check"></i> <span class="bold">Vaginal bleeding OR leaking</span>
-              </li>
-              <li *ngIf="form2.value.checkBoxs['Suspected pregnancy with IUCD in-situ or suspected pregnancy following contraceptive failure OR MTP failure']">
-                <i class="fa-solid fa-check"></i> <span class="bold">Suspected pregnancy with IUCD in-situ or suspected pregnancy following contraceptive failure OR MTP failure</span>
-              </li>
-              <li *ngIf="form2.value.checkBoxs['Follow-up of cases of abortion']">
-                <i class="fa-solid fa-check"></i> <span class="bold">Follow-up of cases of abortion</span>
-              </li>
-              <li *ngIf="form2.value.checkBoxs['Assessment of cervical canal and diameter of internal os']">
-                <i class="fa-solid fa-check"></i> <span class="bold">Assessment of cervical canal and diameter of internal os</span>
-              </li>
-              <li *ngIf="form2.value.checkBoxs['Discrepancy between uterine size and period of amenorrhea']">
-                <i class="fa-solid fa-check"></i> <span class="bold">Discrepancy between uterine size and period of amenorrhea</span>
-              </li>
-              <li *ngIf="form2.value.checkBoxs['Any suspected adenexal or uterine pathology OR abnormality']">
-                <i class="fa-solid fa-check"></i> <span class="bold">Any suspected adenexal or uterine pathology OR abnormality</span>
-              </li>
-              <li *ngIf="form2.value.checkBoxs['Detection of chromosomal abnormalities, fetal structural defects and other abnormalities and their follow-up']">
-                <i class="fa-solid fa-check"></i> <span class="bold">Detection of chromosomal abnormalities, fetal structural defects and other abnormalities and their follow-up</span>
-              </li>
-              <li *ngIf="form2.value.checkBoxs['To evaluate fetal presentation and position']">
-                <i class="fa-solid fa-check"></i> <span class="bold">To evaluate fetal presentation and position</span>
-              </li>
-              <li *ngIf="form2.value.checkBoxs['Assessment of liquor amnii']">
-                <i class="fa-solid fa-check"></i> <span class="bold">Assessment of liquor amnii</span>
-              </li>
-              <li *ngIf="form2.value.checkBoxs['Preterm labor OR preterm premature rupture of membranes']">
-                <i class="fa-solid fa-check"></i> <span class="bold">Preterm labor OR preterm premature rupture of membranes</span>
-              </li>
-              <li *ngIf="form2.value.checkBoxs['Evaluation of placental position, thickness, grading and abnormalities (placenta praevia, retro placental haemorrhage, abnormal adherence etc']">
-                <i class="fa-solid fa-check"></i> <span class="bold">Evaluation of placental position, thickness, grading and abnormalities (placenta praevia, retro placental haemorrhage, abnormal adherence etc</span>
-              </li>
-              <li *ngIf="form2.value.checkBoxs['Evaluation of umbilical cord presentation, insertion, nuchal encirclement, number of vessels and presence of true knot']">
-                <i class="fa-solid fa-check"></i> <span class="bold">Evaluation of umbilical cord presentation, insertion, nuchal encirclement, number of vessels and presence of true knot</span>
-              </li>
-              <li *ngIf="form2.value.checkBoxs['Evaluation of previous Caesarean Section scars']">
-                <i class="fa-solid fa-check"></i> <span class="bold">Evaluation of previous Caesarean Section scars</span>
-              </li>
-              <li *ngIf="form2.value.checkBoxs['Evaluation of fetal growth parameters, fetal weight and fetal well being']">
-                <i class="fa-solid fa-check"></i> <span class="bold">Evaluation of fetal growth parameters, fetal weight and fetal well being</span>
-              </li>
-              <li *ngIf="form2.value.checkBoxs['Color flow mapping and duplex Doppler studies']">
-                <i class="fa-solid fa-check"></i> <span class="bold">Color flow mapping and duplex Doppler studies</span>
-              </li>
-              <li *ngIf="form2.value.checkBoxs['Ultrasound guided procedures such as medical termination of pregnancy, external cephalic version etc and their follow-up']">
-                <i class="fa-solid fa-check"></i> <span class="bold">Ultrasound guided procedures such as medical termination of pregnancy, external cephalic version etc and their follow-up</span>
-              </li>
-              <li *ngIf="form2.value.checkBoxs['Adjunct to diagnostic and therapeutic invasive interventions such as chorionic villus sampling (CVS),amniocenteses, feel blood sampling, fetal skin biopsy, amnio-infusion, intrauterine infusion, placement of shunts etc']">
-                <i class="fa-solid fa-check"></i> <span class="bold">Adjunct to diagnostic and therapeutic invasive interventions such as chorionic villus sampling (CVS),amniocenteses, feel blood sampling, fetal skin biopsy, amnio-infusion, intrauterine infusion, placement of shunts etc</span>
-              </li>
-              <li *ngIf="form2.value.checkBoxs['Observation of intra-partum events']">
-                <i class="fa-solid fa-check"></i> <span class="bold">Observation of intra-partum events</span>
-              </li>
-              <li *ngIf="form2.value.checkBoxs['Medical or surgical conditions complicating pregnancy']">
-                <i class="fa-solid fa-check"></i> <span class="bold">Medical or surgical conditions complicating pregnancy</span>
-              </li>
-              <li *ngIf="form2.value.checkBoxs['Research OR scientific studies in recognized institutions']">
-                <i class="fa-solid fa-check"></i> <span class="bold">Research OR scientific studies in recognized institutions</span>
-              </li>
-            </ul>
-            <p>
-              Procedures carried out (Non-Invasive) (Put a “Tick” on the appropriate procedure)
-            </p>
-            <ul>
-              <li *ngIf="ultraBool">
-                <i class="fa-solid fa-check"></i> <span class="bold text-decoration">Ultrasound</span>
-              </li>
-              <li *ngIf="arrayBool">
-                <i class="fa-solid fa-check"></i> Any other (specify) <span class="bold text-decoration">{{form2.value.otherProcedure[0]}}</span>
-              </li>
-            </ul>
-            <p>
-              Date on which declaration of pregnant woman/person was obtained:- <span class="bold text-decoration">{{form2.value.dateOfDeclaration}}</span>
-            </p>
-            <p>
-              Date on which procedures carried out:<span class="bold text-decoration">{{form2.value.dateOfProcedure}}</span>
-            </p>
-            <p>
-              Result of the non-invasive procedure carried out (report in brief of the test including ultrasound carried out):
-               <span class="bold text-decoration">{{form2.value.resultOfProcedure}}</span>
-            </p>
-            <p>
-              The result of pre-natal diagnostic procedures was conveyed to:
-              <span class="bold text-decoration">{{form2.value.resultConveyedTo}}</span>
-            </p>
-            <p>
-              The result of pre-natal diagnostic procedures was conveyed on:
-              <span class="bold text-decoration">{{form2.value.resultConveyedOn}}</span>
-            </p>
-            <p>
-              Any indication for MTP as per the abnormality detected in the diagnostic procedures/tests:
-              <span class="bold text-decoration">{{form2.value.indication}}</span>
-            </p>
-            <div class="signature-container">
-              <div>
-                <p>
-                  Date: <span class="bold text-decoration">{{form2.value.date}}</span>
+              <p class="inline">
+                11. Procedures carried out (Non-Invasive) (Put a “Tick” on the appropriate procedure):
+              </p>
+              <ul *ngIf=" ultraBool || arrayBool; else proceduresEmpty">
+                <li *ngIf="ultraBool">
+                  <i class="fa-solid fa-check"></i> <span class="bold">Ultrasound</span>
+                </li>
+                <li *ngIf="arrayBool">
+                  <i class="fa-solid fa-check"></i> Any other (specify) <span class="bold">{{form2.value.otherProcedure[0]}}</span>
+                </li>
+              </ul>
+              <ng-template #proceduresEmpty>
+                ______________
+              </ng-template>
+              <br>
+              <p>
+                12. Date on which declaration of pregnant woman/person was obtained:- <span class="bold " *ngIf="form2.value.dateOfDeclaration !== null; else dateOfDeclarationEmpty">
+                  {{form2.value.dateOfDeclaration}}</span>
+                  <ng-template #dateOfDeclarationEmpty>
+                    ______________
+                  </ng-template>
+              </p>
+              <p>
+                13. Date on which procedures carried out:<span class="bold" *ngIf="form2.value.dateOfProcedure !== null; else dateOfProcedureEmpty">{{form2.value.dateOfProcedure}}</span>
+                <ng-template #dateOfProcedureEmpty>
+                  ______________
+                </ng-template>
+              </p>
+              <p>
+                14. Result of the non-invasive procedure carried out (report in brief of the test including ultrasound carried out):
+                 <span class="bold" *ngIf="form2.value.resultOfProcedure !== null; else resultOfProcedureEmpty" >{{form2.value.resultOfProcedure}}</span>
+                 <ng-template #resultOfProcedureEmpty>
+                  ______________
+                 </ng-template>
                 </p>
-                <p>
-                  Place: <span class="bold text-decoration">{{form2.value.place}}</span>
-                </p>
-              </div>
-              <div>
-                <p class="signature-box block" id="signature-box">
+              <p>
+                15. The result of pre-natal diagnostic procedures was conveyed to
+                <span class="bold" *ngIf="form2.value.resultConveyedTo !== null; else resultConveyedToEmpty" >{{form2.value.resultConveyedTo}}</span>
+                <ng-template #resultConveyedToEmpty>
+                  ______________
+                </ng-template>
+                on
+                <span class="bold" *ngIf="form2.value.resultConveyedOn !== null; else resultConveyedOnEmpty">{{form2.value.resultConveyedOn}}</span>
+                <ng-template #resultConveyedOnEmpty>
+                  ______________
+                </ng-template>
+              </p>
+              <p>
+                16. Any indication for MTP as per the abnormality detected in the diagnostic procedures/tests:
+                <span class="bold" *ngIf="form2.value.indication !== null; else indicationEmpty">{{form2.value.indication}}</span>
+                <ng-template #indicationEmpty>
+                  ______________
+                </ng-template>
+              </p>
+              <div class="signature-container">
+                <div>
+                  <p>
+                    Date: <span class="bold" *ngIf="form2.value.date !== null; else dateEmpty">{{form2.value.date}}</span>
+                    <ng-template #dateEmpty>
+                      ______________
+                    </ng-template>
+                  </p>
+                  <p>
+                    Place: <span class="bold" *ngIf="form2.value.place !== null; else placeEmpty" >{{form2.value.place}}</span>
+                    <ng-template #placeEmpty>
+                      ______________
+                    </ng-template>
+                  </p>
+                </div>
+                <div>
+                  <p class="signature-box block" id="signature-box">
 
-                  Name, Signature and Registration Number with Seal of
-                  the Gynaecologist/Radiologist/Registered Medical
-                  Practitioner performing Diagnostic Procedure/s
-                </p>
+                    Name, Signature and Registration Number with Seal of
+                    the Gynaecologist/Radiologist/Registered Medical
+                    Practitioner performing Diagnostic Procedure/s
+                  </p>
+                </div>
               </div>
+
             </div>
 
           </div>

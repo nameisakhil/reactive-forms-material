@@ -94,7 +94,6 @@ export class SectionCFormFComponent implements OnInit {
     // this.blankOneCondition = this.sectionC.value.preNatalCOnveyedTo.length >0
     // this.blankTwoCondition = this.sectionC.value.preNatalCOnveyedOn.length >0
     // console.log(this.blankOneCondition)
-
   }
 
   onSubmit(){
@@ -131,6 +130,7 @@ export class SectionCFormFComponent implements OnInit {
 
       pdf.html(this.el.nativeElement,{
         callback: (pdf) =>{
+          pdf.deletePage(2);
           pdf.save("sectionC.pdf")
         },
         margin:20

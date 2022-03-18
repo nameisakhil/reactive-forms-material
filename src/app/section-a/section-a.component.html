@@ -82,48 +82,93 @@
           <button class="btn btn-dark" type="button" (click)="onClickReset()">Reset</button>
           <button class="btn btn-dark" type="button" (click)="generatePDFSectionB()">Generate PDF</button>
         </form>
-        <div>
+        <!-- class="visibility-none" -->
+        <div >
           <div class="row" id="pdfContent" #pdfContent>
             <div>
               <p class="bold fonts">SECTION A: To be filled in for all Diagnostic Procedures/Tests</p>
               <p>
-                Name and complete address of Genetic Clinic/Ultrasound Clinic/Imaging Centre: &emsp; <span class="text-decoration bold">{{Form1.value.nameandAddress}}</span>
+                1. Name and complete address of Genetic Clinic/Ultrasound Clinic/Imaging Centre: &emsp;
+                <span class="bold" *ngIf="Form1.value.nameandAddress !== null; else nameandAddressEmpty">{{Form1.value.nameandAddress}}</span>
+                <ng-template #nameandAddressEmpty>
+                  ________________
+                </ng-template>
               </p>
               <p>
-                Registration No. (Under PC&PNDT Act, 1994): &emsp; <span class="text-decoration bold">{{Form1.value.regdNo}}</span>
+                2. Registration No. (Under PC&PNDT Act, 1994): &emsp;
+                <span class="bold" *ngIf="Form1.value.regdNo !== null; else regdNoEmpty">{{Form1.value.regdNo}}</span>
+                <ng-template #regdNoEmpty>
+                  ________________
+                </ng-template>
               </p>
               <p>
-                Patient's name: &emsp; <span class="text-decoration bold">{{Form1.value.patientname}}</span> Age: &emsp; <span class="text-decoration bold">{{Form1.value.age}}</span>
+                3. Patient's name: &emsp;
+                <span class="bold" *ngIf="Form1.value.patientname !== null; else patientnameEmpty">{{Form1.value.patientname}}</span>
+                Age: &emsp; <span class="bold" *ngIf="Form1.value.age !== null; else ageEmpty">{{Form1.value.age}}</span>
+                <ng-template #patientnameEmpty>
+                  ________________
+                </ng-template>
+                <ng-template #ageEmpty>
+                  ________________
+                </ng-template>
               </p>
+
               <div>
                 <p>
-                  Total Number of living children: &emsp; <span class="text-decoration bold">{{Form1.value.childrenGroup.noOfChildren}}</span>
+                  4. Total Number of living children: &emsp;
+                  <span class="bold" *ngIf="Form1.value.noOfChildren !== null; else noOfChildrenEmpty">{{Form1.value.childrenGroup.noOfChildren}}</span>
+                  <ng-template #noOfChildrenEmpty>
+                    ________________
+                  </ng-template>
                 </p>
                 <ul>
                   <li>
-                    Number of living Sons with age of each living son (in years or months): &emsp; <span class="text-decoration bold">{{Form1.value.childrenGroup.livingSons}}</span>
+                    a) Number of living Sons with age of each living son (in years or months): &emsp;
+                    <span class="bold" *ngIf="Form1.value.childrenGroup.livingSons !== null; else livingSonsEmpty" >{{Form1.value.childrenGroup.livingSons}}</span>
+                    <ng-template #livingSonsEmpty>
+                      ________________
+                    </ng-template>
                   </li>
                   <li>
-                    Number of living Daughters with age of each living daughter (in years or months) : &emsp; <span class="text-decoration bold">{{Form1.value.childrenGroup.livingDaughters}}</span>
+                    b) Number of living Daughters with age of each living daughter (in years or months) : &emsp;
+                    <span class="bold" *ngIf="Form1.value.childrenGroup.livingDaughters !== null; else livingDaughtersEmpty">{{Form1.value.childrenGroup.livingDaughters}}</span>
+                    <ng-template #livingDaughtersEmpty>
+                      ________________
+                    </ng-template>
                   </li>
                 </ul>
               </div>
               <p>
-                Husband's/Wife's/Father's/Mother's Name: &emsp; <span class="text-decoration bold">{{Form1.value.otherName}}</span>
+                5. Husband's/Wife's/Father's/Mother's Name: &emsp;
+                <span class="bold" *ngIf="Form1.value.otherName !== null; else otherNameEmpty">{{Form1.value.otherName}}</span>
+                <ng-template #otherNameEmpty>
+                  ________________
+                </ng-template>
               </p>
               <p>
-                Full postal address of the patient with Contact Number,if any: &emsp; <span class="bold">{{Form1.value.postalAddress}}</span>
+                6. Full postal address of the patient with Contact Number,if any: &emsp;
+                <span class="bold" *ngIf="Form1.value.postalAddress !== null; else postalAddressEmpty">{{Form1.value.postalAddress}}</span>
+                <ng-template #postalAddressEmpty>
+                  ________________
+                </ng-template>
               </p>
               <div>
                 <p>
-                  Referred by (Full name and address of Doctor(s)/ Genetic Counselling Centre) : <span class="bold">{{Form1.value.referral.referredBy}}</span>
+                  7. (a) Referred by (Full name and address of Doctor(s)/ Genetic Counselling Centre) :
+                  <span class="bold" *ngIf="Form1.value.referredBy !== null; else referredByEmpty">{{Form1.value.referral.referredBy}}</span>
+                  <ng-template #referredByEmpty>
+                    ________________
+                  </ng-template>
                   <br>
                   &emsp; (Referral slips to be preserved carefully with Form F)
                 </p>
 
                 <p>
-                  <span class="bold"> Self-Referral </span> by Gynaecologists/Radiologists/Registered Medical Practitioner conducting the diagnostic procedures:
-                  <span class="text-decoration bold">{{Form1.value.referral.selfReferral}}</span>
+                  (b). <span class="bold" > Self-Referral </span> by Gynaecologists/Radiologists/Registered Medical Practitioner conducting the diagnostic procedures:
+                  <span class="bold" *ngIf="Form1.value.referral.selfReferral !== null; else selfReferralEmpty">{{Form1.value.referral.selfReferral}}</span>
+                  <ng-template #selfReferralEmpty>
+                    ________________
+                  </ng-template>
 
                   <br>
                   (Referral note with indications and case papers of the patient to be preserved with Form F)
@@ -134,15 +179,14 @@
                   </span>
                 </p>
                 <p>
-                  Last menstrual period or weeks of pregnancy:
-                  <span class="text-decoration bold">{{Form1.value.lastDate}}</span>
-
+                  8. Last menstrual period or weeks of pregnancy:
+                  <span class="bold" *ngIf="Form1.value.lastDate !== null; else lastDateEmpty">{{Form1.value.lastDate}}</span>
+                  <ng-template #lastDateEmpty>
+                    ________________
+                  </ng-template>
                 </p>
-
               </div>
             </div>
-
-
           </div>
         </div>
      </div>

@@ -140,78 +140,114 @@
 
 
           </form>
-          <div class="visibility-none">
+          <!-- class="visibility-none" -->
+          <div >
             <div class="row" id="pdfContent" #pdfContent>
               <div>
-                <p class="bold">SECTION D: Declaration</p>
-                <p class="bold">DECLARATION OF THE PERSON UNDERGOING PRE-NATAL DIAGNOSTIC TEST</p>
+                <div>
+                  <p class="bold">SECTION D: Declaration</p>
+                  <p class="bold">DECLARATION OF THE PERSON UNDERGOING PRE-NATAL DIAGNOSTIC TEST</p>
+                </div>
+                <div>
+                  <p>
+                    I, Mrs. / Mr.
+                    <span class="text-decoration bold" *ngIf="sectionD.value.name !== null; else nameEmpty">{{sectionD.value.name}}</span> declare that by undergoing
+                    <span class="text-decoration bold" *ngIf="sectionD.value.diagnosis !== null; else diagnosisEmpty">{{sectionD.value.diagnosis}}</span> Pre-Natal diagnostic test/procedure. I do not want to know the
+                    sex of my foetus.
+                  </p>
+                  <ng-template #nameEmpty>
+                    ____________________
+                  </ng-template>
+                  <ng-template #diagnosisEmpty>
+                    ____________________
+                  </ng-template>
+                  <div class="signature-container">
+                    <p>
+                      Date:- <span *ngIf="sectionD.value.dateOfDeclaretion !== null; else dateOfDeclaretionEmpty"> {{sectionD.value.dateOfDeclaretion | date:'dd/MM/yyyy'}}</span>
+                    </p>
+                    <ng-template #dateOfDeclaretionEmpty>____________________</ng-template>
+                    <div>
+                      <p class="signature-box block" id="signature-box">
+
+                        Signature / thumb impression of the person
+                        undergoing the pre-natal Diagnostic Test/procedure
+                      </p>
+                    </div>
+                  </div>
+
+                  <br>
+                  <p class="bold">In case of thumb impression</p>
+                  <hr>
+                  <p>
+                    Identified by (name)
+                     <span class="text-decoration bold" *ngIf="sectionD.value.nameOfIdentification !== null; else nameOfIdentificationEmpty">{{sectionD.value.nameOfIdentification}}</span> age
+                     <span class="text-decoration bold" *ngIf="sectionD.value.age !== null; else ageEmpty">{{sectionD.value.age}}</span>
+                    sex <span class="text-decoration bold" *ngIf="sectionD.value.gender !== null; else genderEmpty">{{sectionD.value.gender}}</span>relation (if any)
+                    <span class="text-decoration bold" *ngIf="sectionD.value.relationship !== null; else relationshipEmpty">{{sectionD.value.relationship}}</span> address
+                    <span class="text-decoration bold" *ngIf="sectionD.value.address !== null; else addressEmpty">{{sectionD.value.address}}</span>
+                     and contact no
+                    <span class="text-decoration bold" *ngIf="sectionD.value.contactNumber !== null; else contactNumberEmpty">{{sectionD.value.contactNumber}}</span>
+                  </p>
+                  <ng-template #nameOfIdentificationEmpty>____________________</ng-template>
+                  <ng-template #ageEmpty>____________________</ng-template>
+                  <ng-template #genderEmpty>____________________</ng-template>
+                  <ng-template #relationshipEmpty>____________________</ng-template>
+                  <ng-template #addressEmpty>____________________</ng-template>
+                  <ng-template #contactNumberEmpty>____________________</ng-template>
+
+                  <div class="signature-container">
+                    <p>
+                      Date:- <span class="text-decoration bold" *ngIf="sectionD.value.dateOfAttestation !== null;else  dateOfAttestationEmpty">{{sectionD.value.dateOfAttestation | date:'dd/MM/yyyy'}}</span>
+                    </p>
+                    <ng-template #dateOfAttestationEmpty>
+                      ____________________
+                    </ng-template>
+                    <div>
+                      <p class="signature-box block" id="signature-box">
+
+                        Signature of the person attesting thumb impression
+                      </p>
+                    </div>
+                  </div>
+                  <br>
+                  <p class="bold">Declaration of Doctor/Person conducting per natal diagnostic procedure/test</p>
+                  <hr>
+                  <p>
+                    I, <span class="text-decoration bold" *ngIf="sectionD.value.nameOfPersonConductingTest !== null; else nameOfPersonConductingTestEmpty">{{sectionD.value.nameOfPersonConductingTest}}</span>
+                    (name of the person conducting ultrasonography/image scanning) declare
+                    that while conducting ultrasonography/image scanning on Ms./Mr.
+                    <span class="text-decoration bold" *ngIf="sectionD.value.nameOfPersonReciveingTest !== null; else nameOfPersonReciveingTestEmpty">{{sectionD.value.nameOfPersonReciveingTest}}</span>
+                    (name of the pregnant woman or the person undergoing pre natal diagnostic procedure/test), I have neither detected
+                    nor disclosed the sex of her fetus to anybody in any manner.
+                  </p>
+                  <ng-template #nameOfPersonConductingTestEmpty>
+                    ____________________
+                  </ng-template>
+                  <ng-template #nameOfPersonReciveingTestEmpty>
+                    ____________________
+                  </ng-template>
+
+                  <div class="signature-container">
+                    <p>
+                      Date:- <span class="text-decoration bold" *ngIf="sectionD.value.dateOfConductingTest !== null; else dateOfConductingTestEmpty">{{sectionD.value.dateOfConductingTest | date:'dd/MM/yyyy'}}</span>
+                    </p>
+                    <ng-template #dateOfConductingTestEmpty>
+                      ____________________
+                    </ng-template>
+                    <div>
+                      <p class="signature-box block" id="signature-box">
+
+                        Signature: ____________________________
+                        <br>
+                        Name in Conducting Diagnostic procedure
+                        Capitals, Registration Number with Seal of the
+                        Gynaecologist/Radiologist/Registered Medical Practitioner
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div>
-                <p>
-                  I, Mrs. / Mr. <span class="text-decoration bold">{{sectionD.value.name}}</span> declare that by undergoing
-                  <span class="text-decoration bold">{{sectionD.value.diagnosis}}</span> Pre-Natal diagnostic test/procedure. I do not want to know the
-                  sex of my foetus.
-                </p>
-                <div class="signature-container">
-                  <p>
-                    Date:- {{sectionD.value.dateOfDeclaretion | date:'dd/MM/yyyy'}}
-                  </p>
-                  <div>
-                    <p class="signature-box block" id="signature-box">
 
-                      Signature / thumb impression of the person
-                      undergoing the pre-natal Diagnostic Test/procedure
-                    </p>
-                  </div>
-                </div>
-
-                <br>
-                <p class="bold">In case of thumb impression</p>
-                <hr>
-                <p>
-                  Identified by (name) <span class="text-decoration bold">{{sectionD.value.nameOfIdentification}}</span> age <span class="text-decoration bold">
-                  {{sectionD.value.age}}</span> sex <span class="text-decoration bold">{{sectionD.value.gender}}</span>relation (if any)  <span class="text-decoration bold">
-                  {{sectionD.value.relationship}}</span> address<span class="text-decoration bold">{{sectionD.value.address}}</span>
-                   and contact no
-                  <span class="text-decoration bold">{{sectionD.value.contactNumber}}</span>
-                </p>
-                <div class="signature-container">
-                  <p>
-                    Date:- <span class="text-decoration bold">{{sectionD.value.dateOfAttestation | date:'dd/MM/yyyy'}}</span>
-                  </p>
-                  <div>
-                    <p class="signature-box block" id="signature-box">
-
-                      Signature of the person attesting thumb impression
-                    </p>
-                  </div>
-                </div>
-                <br>
-                <p class="bold">Declaration of Doctor/Person conducting per natal diagnostic procedure/test</p>
-                <hr>
-                <p>
-                  I, <span class="text-decoration bold">{{sectionD.value.nameOfPersonConductingTest}}</span> (name of the person conducting ultrasonography/image scanning) declare
-                  that while conducting ultrasonography/image scanning on Ms./Mr.
-                  <span class="text-decoration bold">{{sectionD.value.nameOfPersonReciveingTest}}</span>
-                  (name of the pregnant woman or the person undergoing pre natal diagnostic procedure/test), I have neither detected
-                  nor disclosed the sex of her fetus to anybody in any manner.
-                </p>
-                <div class="signature-container">
-                  <p>
-                    Date:- <span class="text-decoration bold">{{sectionD.value.dateOfConductingTest | date:'dd/MM/yyyy'}}</span>
-                  </p>
-                  <div>
-                    <p class="signature-box block" id="signature-box">
-
-                      Signature: ____________________________________________________
-                      <br>
-                      Name in Conducting Diagnostic procedure
-                      Capitals, Registration Number with Seal of the
-                      Gynaecologist/Radiologist/Registered Medical Practitioner
-                    </p>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
       </div>

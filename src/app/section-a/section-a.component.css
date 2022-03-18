@@ -60,3 +60,7 @@ button {
 ul{
   list-style-type: none;
 }
+
+#pdfContent{
+  font-size: 14px;
+}
