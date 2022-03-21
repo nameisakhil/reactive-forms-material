@@ -51,17 +51,17 @@
           Identified by (name)
             <mat-form-field class="example-full-width" appearance="fill">
               <mat-label>Name</mat-label>
-              <input matInput required placeholder="Ex. Akhil" formControlName="nameOfIdentification">
+              <input matInput  placeholder="Ex. Akhil" formControlName="nameOfIdentification">
             </mat-form-field>
           age
           <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Age</mat-label>
-            <input type="number" required matInput placeholder="Ex. 24" formControlName="age">
+            <input type="number"  matInput placeholder="Ex. 24" formControlName="age">
           </mat-form-field>
           sex
           <mat-form-field appearance="fill">
             <mat-label>Gender</mat-label>
-            <mat-select formControlName="gender" required>
+            <mat-select formControlName="gender" >
               <mat-option *ngFor = "let gender of genders" [value]="gender.value">
                 {{gender.viewValue}}
               </mat-option>
@@ -70,19 +70,19 @@
           Relation (if any)
           <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Relationship</mat-label>
-            <input matInput required placeholder="Ex. Father" formControlName="relationship">
+            <input matInput  placeholder="Ex. Father" formControlName="relationship">
           </mat-form-field>
           <br>
           address
 
           <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Address</mat-label>
-            <input matInput required formControlName="address">
+            <input matInput  formControlName="address">
           </mat-form-field>
           and contact no
           <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Contact Number</mat-label>
-            <input required type="number" matInput placeholder="Ex. 9898979796" minlength="10" maxlength="10" formControlName="contactNumber">
+            <input  type="number" matInput placeholder="Ex. 9898979796" minlength="10" maxlength="10" formControlName="contactNumber">
           </mat-form-field>
 
           <br>
@@ -141,7 +141,7 @@
 
           </form>
           <!-- class="visibility-none" -->
-          <div >
+          <div class="visibility-none" >
             <div class="row" id="pdfContent" #pdfContent>
               <div>
                 <div>

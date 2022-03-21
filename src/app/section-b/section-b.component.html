@@ -89,7 +89,7 @@
         </div>
       </form>
       <!-- class="visibility-none" -->
-      <div >
+      <div class="visibility-none">
         <div class="row" id="pdfContent" #pdfContent>
           <div>
             <p class="bold">
@@ -97,13 +97,13 @@
             </p>
             <div>
               <p>9. Name of the doctor performing the procedure/s:
-                <span class="text-decoration bold" *ngIf="form2.value.docter_name !== null; else docter_name_empty">{{form2.value.docter_name}}</span>
+                <span class="bold" *ngIf="form2.value.docter_name !== null; else docter_name_empty">{{form2.value.docter_name}}</span>
                 <ng-template #docter_name_empty>
                   ______________
                 </ng-template>
               </p>
               <p>10. Indication/s for diagnosis procedure
-                <span class="text-decoration bold" *ngIf="form2.value.indications !== null; else indicationsEmpty">{{form2.value.indications}}</span>
+                <span class="bold" *ngIf="form2.value.indications !== null; else indicationsEmpty">{{form2.value.indications}}</span>
                 <ng-template #indicationsEmpty>
                   ______________
                 </ng-template>
@@ -200,7 +200,7 @@
                   <i class="fa-solid fa-check"></i> <span class="bold">Medical or surgical conditions complicating pregnancy</span>
                 </li>
                 <li *ngIf="form2.value.checkBoxs['Research OR scientific studies in recognized institutions']" class="margin-left-inline">
-                  <i class="fa-solid fa-check"></i> <span class="bold">Research OR scientific studies in recognized institutions</span>
+                  <i class="fa-solid fa-check"></i><span class="bold">Research OR scientific studies in recognized institutions</span>
                 </li>
               </ul>
               <ng-template #checkboxEmpty>

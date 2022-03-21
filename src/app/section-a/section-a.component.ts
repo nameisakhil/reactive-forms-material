@@ -81,6 +81,8 @@ export class SectionAComponent implements OnInit {
         callback: (pdf) =>{
           pdf.deletePage(2);
           pdf.save("sectionA.pdf")
+          this.Form1.reset()
+          this.router.navigate(["../", 'sectionB'],{relativeTo:this.activatedRoute})
         },
         margin:20
       })
